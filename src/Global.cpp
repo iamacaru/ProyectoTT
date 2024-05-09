@@ -7,6 +7,8 @@ Matrix *Global::Snm;
 
 Matrix *Global::PC;
 
+Matrix *Global::GEO;
+
 void Global::eop19620101(int f) {
     Global::eopdata = new Matrix(f, 13);
 
@@ -49,6 +51,42 @@ void Global::GGM03S () {
 
             (*Global::Cnm)(n + 1, m + 1) = (*aux)(3,1);
             (*Global::Snm)(n + 1, m + 1) = (*aux)(4,1);
+        }
+    }
+
+    fclose(fid);
+}
+
+void Global::Pc () {
+    Global::PC = new Matrix(2285, 1020);
+
+    FILE *fid = fopen("../data/DE430Coeff.txt","r");
+    if (fid == NULL) {
+        printf("Error al abrir el fichero.");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 1; i <= 2285; i++) {
+        for (int j = 1; j <= 1020; j++) {
+            fscanf(fid, "%lf", &((*PC)(i, j)));
+        }
+    }
+
+    fclose(fid);
+}
+
+void Global::GEOS3 () {
+    Global::GEO = new Matrix(46, 54);
+
+    FILE *fid = fopen("../data/DE430Coeff.txt","r");
+    if (fid == NULL) {
+        printf("Error al abrir el fichero.");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 1; i <= 2285; i++) {
+        for (int j = 1; j <= 1020; j++) {
+            fscanf(fid, "%lf", &((*PC)(i, j)));
         }
     }
 

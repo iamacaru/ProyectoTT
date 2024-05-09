@@ -39,5 +39,5 @@ add_executable(Proyecto
         src/Position.cpp
         include/IERS.h
         src/IERS.cpp
-        src/EKF_GEOS3.cpp
+        EKF_GEOS3.cpp
 )

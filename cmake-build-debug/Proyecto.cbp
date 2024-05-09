@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Proyecto"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Proyecto">
+				<Option output="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Proyecto.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 Proyecto"/>
+					<CompileFile command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Proyecto/fast">
+				<Option output="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Proyecto.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="c:\urapps\clion_2022_2_2\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 Proyecto/fast"/>
+					<CompileFile command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/URApps/CLion_2022_2_2/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/iamacaru/Documents/GitHub/ProyectoTT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/EKF_Test.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/AccelPointMass.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/AzElPa.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Cheb3D.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/EccAnom.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Frac.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Geodetic.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Global.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/IERS.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Legendre.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Matrix.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/MeanObliquity.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Mjday.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Mjday_TDB.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/NutAngles.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Position.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/R_x.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/R_y.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/R_z.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/SAT_Const.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Sign_.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Timediff.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Unit.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/AccelPointMass.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/AzElPa.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Cheb3D.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EKF_GEOS3.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EccAnom.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Frac.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Geodetic.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Global.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/IERS.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Legendre.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Matrix.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/MeanObliquity.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Mjday.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Mjday_TDB.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/NutAngles.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Position.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/R_x.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/R_y.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/R_z.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Sign_.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Timediff.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Unit.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

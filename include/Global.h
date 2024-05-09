@@ -15,7 +15,10 @@ public:
     static void GGM03S ();
 
     static Matrix *PC;
-    static void Pc();
+    static void Pc ();
+
+    static Matrix *GEO;
+    static void GEOS3 ();
 
     struct AuxParam {
         static double Mjd_UTC;
