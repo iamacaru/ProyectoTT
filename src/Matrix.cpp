@@ -118,7 +118,19 @@ Matrix operator/(const Matrix& matrix, double scalar) {
         }
     }
 
-    return result; // Devuelve la nueva matriz resultante
+    return result;
+}
+
+Matrix operator+(const Matrix& matrix, double scalar) {
+    Matrix result(matrix.rows(), matrix.columns());
+
+    for (int i = 0; i < matrix.rows(); i++) {
+        for (int j = 0; j < matrix.columns(); j++) {
+            result(i + 1, j + 1) = matrix(i + 1, j + 1) + scalar;
+        }
+    }
+
+    return result;
 }
  
 double& Matrix::operator()(const int i, const int j) const
@@ -175,3 +187,17 @@ int Matrix::columns() const {
     return col;
 }
 
+Matrix Matrix::traspuesta() const {
+    double values[fil*col];
+
+    int k = 0;
+
+    for (int i = 0; i < col; i++) {
+        for (int j = 0; j < fil; j++) {
+            values[k] = matrix[j][i];
+            k++;
+        }
+    }
+
+    return {col, fil, values, col * fil};
+}

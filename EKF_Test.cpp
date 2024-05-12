@@ -18,9 +18,16 @@
 #include "./include/NutAngles.h"
 #include "./include/Position.h"
 #include "./include/IERS.h"
-#include "./include/Global.h"
 #include "./include/Legendre.h"
 #include "./include/SAT_Const.h"
+#include "./include/EqnEquinox.h"
+#include "./include/Gmst.h"
+#include "./include/Gast.h"
+#include "./include/GHAMatrix.h"
+#include "./include/NutMatrix.h"
+#include "./include/PoleMatrix.h"
+#include "./include/PrecMatrix.h"
+#include "./include/TimeUpdate.h"
 
 
 #include <iostream>
@@ -318,6 +325,101 @@ int Legendre_01() {
     return 0;
 }
 
+int EqnEquinox_01() {
+    _assert(fabs(EqnEquinox(2451545.0) - -6.70392825380816e-05) < TOL_);
+    _assert(fabs(EqnEquinox(2451550.5) - -6.57426418935655e-05) < TOL_);
+    _assert(fabs(EqnEquinox(2451560.75) - -6.39866793613151e-05) < TOL_);
+    _assert(fabs(EqnEquinox(2451575.3) - -6.30997404226282e-05) < TOL_);
+
+    return 0;
+}
+
+int Gmst_01() {
+    _assert(fabs(gmst(582003) - 3.93686610296254) < TOL_);
+    _assert(fabs(gmst(54417) - 0.902905604417803) < TOL_);
+    _assert(fabs(gmst(61597) - 5.03843040108836) < TOL_);
+    _assert(fabs(gmst(39457) - 1.15973849105372) < TOL_);
+
+    return 0;
+}
+
+int Gast_01() {
+    _assert(fabs(gast(52135.4) - 1.86532951201256) < TOL_);
+    _assert(fabs(gast(42876.6) - 0.924514810241508) < TOL_);
+    _assert(fabs(gast(67234.1) - 2.10962351700529) < TOL_);
+    _assert(fabs(gast(39851.5) - 4.80461613750777) < TOL_);
+
+    return 0;
+}
+
+int GHAMatrix_01() {
+    Matrix sol(3,3);
+
+    sol = GHAMatrix(241575.6);
+
+    _assert(fabs(sol(1,1) - 0.498164074615664) < TOL_ && fabs(sol(1,2) - 0.867082784261295) < TOL_ && fabs(sol(1,3) - 0) < TOL_ &&
+            fabs(sol(2,1) - -0.867082784261295 ) < TOL_ && fabs(sol(2,2) - 0.498164074615664) < TOL_ && fabs(sol(2,3) - 0) < TOL_ &&
+            fabs(sol(3,1) - 0) < TOL_ && fabs(sol(3,2) - 0) < TOL_ && fabs(sol(3,3) - 1) < TOL_);
+
+    return 0;
+}
+
+int NutMatrix_01() {
+    Matrix sol(3,3);
+
+    sol = NutMatrix(2524686.6);
+
+    _assert(fabs(sol(1,1) - 0.999999998843278) < TOL_ && fabs(sol(1,2) - -4.43678484217162e-05) < TOL_ && fabs(sol(1,3) - -1.85725364151702e-05) < TOL_ &&
+            fabs(sol(2,1) - 4.43685056896323e-05) < TOL_ && fabs(sol(2,2) - 0.99999999838948) < TOL_ && fabs(sol(2,3) - 3.53903222812257e-05) < TOL_ &&
+            fabs(sol(3,1) - 1.85709661928042e-05) < TOL_ && fabs(sol(3,2) - -3.5391146275876e-05) < TOL_ && fabs(sol(3,3) - 0.999999999201293) < TOL_);
+
+    return 0;
+}
+
+int PoleMatrix_01() {
+    Matrix sol(3,3);
+
+    sol = PoleMatrix(15.4, 6.8);
+
+    _assert(fabs(sol(1,1) - -0.95295291688718) < TOL_ && fabs(sol(1,2) - 0.149774827043247) < TOL_ && fabs(sol(1,3) - 0.263530338633677) < TOL_ &&
+            fabs(sol(2,1) - 0) < TOL_ && fabs(sol(2,2) - 0.869397490349825) < TOL_ && fabs(sol(2,3) - -0.494113351138608) < TOL_ &&
+            fabs(sol(3,1) - -0.303118356745702 ) < TOL_ && fabs(sol(3,2) - -0.470866759240436) < TOL_ && fabs(sol(3,3) - -0.82849487436326) < TOL_);
+
+    return 0;
+}
+
+int PrecMatrix_01() {
+    Matrix sol(3,3);
+
+    sol = PrecMatrix(2358142.6, 2386475.2);
+
+    _assert(fabs(sol(1,1) - 0.999810970866054) < TOL_ && fabs(sol(1,2) - -0.0180081535228055) < TOL_ && fabs(sol(1,3) - -0.0073300029043494) < TOL_ &&
+            fabs(sol(2,1) - 0.0180081534586217) < TOL_ && fabs(sol(2,2) - 0.999837837877244) < TOL_ && fabs(sol(2,3) - -6.60149034239962e-05) < TOL_ &&
+            fabs(sol(3,1) - 0.00733000306203428) < TOL_ && fabs(sol(3,2) - -6.59973924696928e-05) < TOL_ && fabs(sol(3,3) - 0.999973132988809) < TOL_);
+
+    return 0;
+}
+
+int TimeUpdate_01() {
+    double values1[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    Matrix P(3,3, values1, 9);
+    double values2[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
+    Matrix Phi(3,3, values2, 9);
+
+    Matrix sol1(3,3);
+    sol1 = TimeUpdate(P, Phi, 40);
+    Matrix sol2(3,3);
+    sol2 = TimeUpdate(P, Phi);
+    _assert(fabs(sol1(1,1) - 2728) < TOL_ && fabs(sol1(1,2) - 1702) < TOL_ && fabs(sol1(1,3) - 676) < TOL_ &&
+            fabs(sol1(2,1) - 1666) < TOL_ && fabs(sol1(2,2) - 1045) < TOL_ && fabs(sol1(2,3) - 424) < TOL_ &&
+            fabs(sol1(3,1) - 604) < TOL_ && fabs(sol1(3,2) - 388) < TOL_ && fabs(sol1(3,3) - 172) < TOL_);
+
+    _assert(fabs(sol2(1,1) - 2688) < TOL_ && fabs(sol2(1,2) - 1662) < TOL_ && fabs(sol2(1,3) - 636) < TOL_ &&
+            fabs(sol2(2,1) - 1626) < TOL_ && fabs(sol2(2,2) - 1005) < TOL_ && fabs(sol2(2,3) - 384) < TOL_ &&
+            fabs(sol2(3,1) - 564) < TOL_ && fabs(sol2(3,2) - 348) < TOL_ && fabs(sol2(3,3) - 132) < TOL_);
+
+    return 0;
+}
 
 
 int all_tests()
@@ -342,6 +444,14 @@ int all_tests()
     _verify(Position_01);
     _verify(IERS_01);
     _verify(Legendre_01);
+    _verify(EqnEquinox_01);
+    _verify(Gmst_01);
+    _verify(Gast_01);
+    _verify(GHAMatrix_01);
+    _verify(NutMatrix_01);
+    _verify(PoleMatrix_01);
+    _verify(PrecMatrix_01);
+    _verify(TimeUpdate_01);
 
     return 0;
 }

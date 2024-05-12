@@ -36,7 +36,7 @@
    G. Seeber, "Satellite Geodesy", 2nd Edition, 2003.
 
 --------------------------------------------------------------------------*/
-
+/*
 int main() {
     Global::Pc();
     Global::GGM03S();
@@ -62,3 +62,4 @@ int main() {
         obs(i,4) = 1e3*Dist;
     }
 };
+ */

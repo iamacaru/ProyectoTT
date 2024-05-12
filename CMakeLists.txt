@@ -40,4 +40,20 @@ add_executable(Proyecto
         include/IERS.h
         src/IERS.cpp
         EKF_GEOS3.cpp
+        include/EqnEquinox.h
+        src/EqnEquinox.cpp
+        include/Gmst.h
+        src/Gmst.cpp
+        include/Gast.h
+        src/Gast.cpp
+        include/GHAMatrix.h
+        src/GHAMatrix.cpp
+        include/NutMatrix.h
+        src/NutMatrix.cpp
+        include/PoleMatrix.h
+        src/PoleMatrix.cpp
+        include/PrecMatrix.h
+        src/PrecMatrix.cpp
+        include/TimeUpdate.h
+        src/TimeUpdate.cpp
 )

@@ -15,6 +15,7 @@ class Matrix
         Matrix  operator*(const Matrix& matrix2);
         friend Matrix operator*(double scalar, const Matrix& matrix);
         friend Matrix operator/(const Matrix& matrix, double scalar);
+        friend Matrix operator+(const Matrix& matrix, double scalar);
 
 
         double& operator()(int i, int j) const;
@@ -27,6 +28,7 @@ class Matrix
         int rows() const;
         int columns() const;
 
+        Matrix traspuesta() const;
 
  
     private:
