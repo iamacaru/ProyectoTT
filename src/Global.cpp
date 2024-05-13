@@ -92,3 +92,11 @@ void Global::GEOS3 () {
 
     fclose(fid);
 }
+
+double Global::AuxParam::Mjd_UTC = 0.0;
+double Global::AuxParam::Mjd_TT = 0.0;
+int Global::AuxParam::n = 0;
+int Global::AuxParam::m = 0;
+int Global::AuxParam::sun = 0;
+int Global::AuxParam::moon = 0;
+int Global::AuxParam::planets = 0;

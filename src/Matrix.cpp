@@ -179,6 +179,19 @@ double Matrix::dot(const Matrix& matrix2) const {
     return result;
 }
 
+Matrix Matrix::cross(const Matrix& matrix2) const {
+    double x = matrix[0][1] * matrix2(0,2) - matrix[0][2] * matrix2(0,1);
+    double y = matrix[0][2] * matrix2(0,0) - matrix[0][0] * matrix2(0,2);
+    double z = matrix[0][0] * matrix2(0,1) - matrix[0][1] * matrix2(0,0);
+
+    Matrix result(1, 3);
+    result(0, 0) = x;
+    result(0, 1) = y;
+    result(0, 2) = z;
+
+    return result;
+}
+
 int Matrix::rows() const {
     return fil;
 }
@@ -200,4 +213,25 @@ Matrix Matrix::traspuesta() const {
     }
 
     return {col, fil, values, col * fil};
+}
+
+Matrix Matrix::subMatrix(int f, int l, int w, bool b) const{
+    int k = 1;
+    if (b) {
+        Matrix r(1, l - f + 1);
+        for (int i = f; i <= l; i++) {
+            r(1, k) = matrix[w - 1][i - 1];
+            k++;
+        }
+
+        return r;
+    } else {
+        Matrix r(l - f + 1, 1);
+        for (int i = f; i <= l; i++) {
+            r(k, 1) = matrix[i - 1][w - 1];
+            k++;
+        }
+
+        return r;
+    }
 }

@@ -28,10 +28,12 @@
 #include "./include/PoleMatrix.h"
 #include "./include/PrecMatrix.h"
 #include "./include/TimeUpdate.h"
-
+#include "./include/VarEqn.h"
+#include "./include/AccelHarmonic.h"
+#include "./include/G_AccelHarmonic.h"
+#include "./include/Elements.h"
 
 #include <iostream>
-
 
 #define TOL_ 10e-14
 
@@ -421,6 +423,66 @@ int TimeUpdate_01() {
     return 0;
 }
 
+int AccelHarmonic_01() {
+    Global::GGM03S();
+
+    double values1[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    Matrix r(3,3, values1, 9);
+    double values2[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
+    Matrix E(3,3, values2, 9);
+    int n_max = 3;
+    int m_max = 3;
+
+    Matrix sol = AccelHarmonic(r, E, n_max, m_max);
+
+    sol.print();
+
+    _assert(fabs(sol(1,1) - 1.95371011265625e+17) < TOL_);
+    _assert(fabs(sol(2,1) - 6.30724959401479e+17) < TOL_);
+    _assert(fabs(sol(3,1) - 1.06607890753733e+18) < TOL_);
+
+    return 0;
+}
+
+int G_AccelHarmonic_01() {
+    Global::GGM03S();
+
+    double values1[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
+    Matrix r(3,3, values1, 9);
+    double values2[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    Matrix U(3,3, values2, 9);
+    int n_max = 3;
+    int m_max = 3;
+
+    Matrix sol = G_AccelHarmonic(r, U, n_max, m_max);
+
+    sol.print();
+
+    _assert(fabs(sol(1,1) - -3.1253890746146e+18) < TOL_ && fabs(sol(1,2) - -3.83213697804002e+18) < TOL_ && fabs(sol(1,3) - -4.54406446926084e+18) < TOL_ &&
+            fabs(sol(2,1) - -3.89593513040882e+18) < TOL_ && fabs(sol(2,2) - -4.74186674815615e+18) < TOL_ && fabs(sol(2,3) - -5.59369641022418e+18) < TOL_ &&
+            fabs(sol(3,1) - -4.66648118620304e+18) < TOL_ && fabs(sol(3,2) - -5.65159651827228e+18) < TOL_ && fabs(sol(3,3) - -6.64332835118751e+18) < TOL_);
+
+    return 0;
+}
+
+int Elements_01() {
+    double values[] = {1,2,3,4,5,6};
+    Matrix y(1,6,values,6);
+    double p, a, e, i, Omega, omega, M;
+
+    elements(y,p, a, e, i, Omega, omega, M);
+
+    _assert(fabs(p - 1.35474011564823e-13) < TOL_);
+    _assert(fabs(a - 1.87082869338765) < TOL_);
+    _assert(fabs(e - 0.999999999999964) < TOL_);
+    _assert(fabs(i - 1.99133066207886) < TOL_);
+    _assert(fabs(Omega - 3.6052402625906) < TOL_);
+    _assert(fabs(omega - 5.21086941752228) < TOL_);
+    _assert(fabs(M - 3.14159030993265) < TOL_);
+
+    return 0;
+}
+
 
 int all_tests()
 {
@@ -452,6 +514,9 @@ int all_tests()
     _verify(PoleMatrix_01);
     _verify(PrecMatrix_01);
     _verify(TimeUpdate_01);
+    //_verify(AccelHarmonic_01);
+    //_verify(G_AccelHarmonic_01);
+    //_verify(Elements_01);
 
     return 0;
 }

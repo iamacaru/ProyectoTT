@@ -22,8 +22,12 @@ public:
 
     struct AuxParam {
         static double Mjd_UTC;
+        static double Mjd_TT;
         static int n;
         static int m;
+        static int sun;
+        static int moon;
+        static int planets;
     };
 };
 

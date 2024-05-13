@@ -266,6 +266,34 @@ build CMakeFiles/Proyecto.dir/src/TimeUpdate.cpp.obj: CXX_COMPILER__Proyecto_uns
   OBJECT_DIR = CMakeFiles\Proyecto.dir
   OBJECT_FILE_DIR = CMakeFiles\Proyecto.dir\src
 
+build CMakeFiles/Proyecto.dir/src/VarEqn.cpp.obj: CXX_COMPILER__Proyecto_unscanned_Debug C$:/Users/macar/Documents/GitHub/ProyectoTT/src/VarEqn.cpp || cmake_object_order_depends_target_Proyecto
+  DEP_FILE = CMakeFiles\Proyecto.dir\src\VarEqn.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/macar/Documents/GitHub/ProyectoTT/include
+  OBJECT_DIR = CMakeFiles\Proyecto.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto.dir\src
+
+build CMakeFiles/Proyecto.dir/src/AccelHarmonic.cpp.obj: CXX_COMPILER__Proyecto_unscanned_Debug C$:/Users/macar/Documents/GitHub/ProyectoTT/src/AccelHarmonic.cpp || cmake_object_order_depends_target_Proyecto
+  DEP_FILE = CMakeFiles\Proyecto.dir\src\AccelHarmonic.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/macar/Documents/GitHub/ProyectoTT/include
+  OBJECT_DIR = CMakeFiles\Proyecto.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto.dir\src
+
+build CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.obj: CXX_COMPILER__Proyecto_unscanned_Debug C$:/Users/macar/Documents/GitHub/ProyectoTT/src/G_AccelHarmonic.cpp || cmake_object_order_depends_target_Proyecto
+  DEP_FILE = CMakeFiles\Proyecto.dir\src\G_AccelHarmonic.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/macar/Documents/GitHub/ProyectoTT/include
+  OBJECT_DIR = CMakeFiles\Proyecto.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto.dir\src
+
+build CMakeFiles/Proyecto.dir/src/Elements.cpp.obj: CXX_COMPILER__Proyecto_unscanned_Debug C$:/Users/macar/Documents/GitHub/ProyectoTT/src/Elements.cpp || cmake_object_order_depends_target_Proyecto
+  DEP_FILE = CMakeFiles\Proyecto.dir\src\Elements.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/macar/Documents/GitHub/ProyectoTT/include
+  OBJECT_DIR = CMakeFiles\Proyecto.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Proyecto
@@ -274,7 +302,7 @@ build CMakeFiles/Proyecto.dir/src/TimeUpdate.cpp.obj: CXX_COMPILER__Proyecto_uns
 #############################################
 # Link the executable Proyecto.exe
 
-build Proyecto.exe: CXX_EXECUTABLE_LINKER__Proyecto_Debug CMakeFiles/Proyecto.dir/src/Matrix.cpp.obj CMakeFiles/Proyecto.dir/src/R_x.cpp.obj CMakeFiles/Proyecto.dir/EKF_Test.cpp.obj CMakeFiles/Proyecto.dir/src/R_y.cpp.obj CMakeFiles/Proyecto.dir/src/R_z.cpp.obj CMakeFiles/Proyecto.dir/src/Global.cpp.obj CMakeFiles/Proyecto.dir/src/Sign_.cpp.obj CMakeFiles/Proyecto.dir/src/Timediff.cpp.obj CMakeFiles/Proyecto.dir/src/Unit.cpp.obj CMakeFiles/Proyecto.dir/src/AccelPointMass.cpp.obj CMakeFiles/Proyecto.dir/src/AzElPa.cpp.obj CMakeFiles/Proyecto.dir/src/Cheb3D.cpp.obj CMakeFiles/Proyecto.dir/src/EccAnom.cpp.obj CMakeFiles/Proyecto.dir/src/Frac.cpp.obj CMakeFiles/Proyecto.dir/src/Geodetic.cpp.obj CMakeFiles/Proyecto.dir/src/Legendre.cpp.obj CMakeFiles/Proyecto.dir/src/MeanObliquity.cpp.obj CMakeFiles/Proyecto.dir/src/Mjday.cpp.obj CMakeFiles/Proyecto.dir/src/Mjday_TDB.cpp.obj CMakeFiles/Proyecto.dir/src/NutAngles.cpp.obj CMakeFiles/Proyecto.dir/src/Position.cpp.obj CMakeFiles/Proyecto.dir/src/IERS.cpp.obj CMakeFiles/Proyecto.dir/EKF_GEOS3.cpp.obj CMakeFiles/Proyecto.dir/src/EqnEquinox.cpp.obj CMakeFiles/Proyecto.dir/src/Gmst.cpp.obj CMakeFiles/Proyecto.dir/src/Gast.cpp.obj CMakeFiles/Proyecto.dir/src/GHAMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/NutMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/PoleMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/PrecMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/TimeUpdate.cpp.obj
+build Proyecto.exe: CXX_EXECUTABLE_LINKER__Proyecto_Debug CMakeFiles/Proyecto.dir/src/Matrix.cpp.obj CMakeFiles/Proyecto.dir/src/R_x.cpp.obj CMakeFiles/Proyecto.dir/EKF_Test.cpp.obj CMakeFiles/Proyecto.dir/src/R_y.cpp.obj CMakeFiles/Proyecto.dir/src/R_z.cpp.obj CMakeFiles/Proyecto.dir/src/Global.cpp.obj CMakeFiles/Proyecto.dir/src/Sign_.cpp.obj CMakeFiles/Proyecto.dir/src/Timediff.cpp.obj CMakeFiles/Proyecto.dir/src/Unit.cpp.obj CMakeFiles/Proyecto.dir/src/AccelPointMass.cpp.obj CMakeFiles/Proyecto.dir/src/AzElPa.cpp.obj CMakeFiles/Proyecto.dir/src/Cheb3D.cpp.obj CMakeFiles/Proyecto.dir/src/EccAnom.cpp.obj CMakeFiles/Proyecto.dir/src/Frac.cpp.obj CMakeFiles/Proyecto.dir/src/Geodetic.cpp.obj CMakeFiles/Proyecto.dir/src/Legendre.cpp.obj CMakeFiles/Proyecto.dir/src/MeanObliquity.cpp.obj CMakeFiles/Proyecto.dir/src/Mjday.cpp.obj CMakeFiles/Proyecto.dir/src/Mjday_TDB.cpp.obj CMakeFiles/Proyecto.dir/src/NutAngles.cpp.obj CMakeFiles/Proyecto.dir/src/Position.cpp.obj CMakeFiles/Proyecto.dir/src/IERS.cpp.obj CMakeFiles/Proyecto.dir/EKF_GEOS3.cpp.obj CMakeFiles/Proyecto.dir/src/EqnEquinox.cpp.obj CMakeFiles/Proyecto.dir/src/Gmst.cpp.obj CMakeFiles/Proyecto.dir/src/Gast.cpp.obj CMakeFiles/Proyecto.dir/src/GHAMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/NutMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/PoleMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/PrecMatrix.cpp.obj CMakeFiles/Proyecto.dir/src/TimeUpdate.cpp.obj CMakeFiles/Proyecto.dir/src/VarEqn.cpp.obj CMakeFiles/Proyecto.dir/src/AccelHarmonic.cpp.obj CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.obj CMakeFiles/Proyecto.dir/src/Elements.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Proyecto.dir

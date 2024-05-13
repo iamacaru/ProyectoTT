@@ -24,11 +24,13 @@ class Matrix
 
         double norm() const;
         double dot(const Matrix& matrix2) const;
+        Matrix cross(const Matrix& matrix2) const;
 
         int rows() const;
         int columns() const;
 
         Matrix traspuesta() const;
+        Matrix subMatrix(int f, int l, int w, bool b) const;
 
  
     private:

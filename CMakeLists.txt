@@ -56,4 +56,12 @@ add_executable(Proyecto
         src/PrecMatrix.cpp
         include/TimeUpdate.h
         src/TimeUpdate.cpp
+        include/VarEqn.h
+        src/VarEqn.cpp
+        include/AccelHarmonic.h
+        src/AccelHarmonic.cpp
+        include/G_AccelHarmonic.h
+        src/G_AccelHarmonic.cpp
+        include/Elements.h
+        src/Elements.cpp
 )
