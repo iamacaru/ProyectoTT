@@ -11,7 +11,7 @@ Matrix G_AccelHarmonic(Matrix& r, Matrix& U, int n_max, int m_max) {
     Matrix aux2(r.rows(), r.columns());
 
     // Gradient
-    for (int i = 1; i <= 3; ++i) {
+    for (int i = 1; i <= 3; i++) {
         // Set offset in i-th component of the position vector
         dr(1,1) = 0; dr(2,1) = 0; dr(3,1) = 0;
         dr(i, 1) = d;
@@ -20,8 +20,8 @@ Matrix G_AccelHarmonic(Matrix& r, Matrix& U, int n_max, int m_max) {
         aux2 = r-dr/2;
         Matrix da = AccelHarmonic(aux1, U, n_max, m_max) - AccelHarmonic(aux2, U, n_max, m_max);
         // Derivative with respect to i-th axis
-        for (int j = 1; j <= 3; ++j) {
-            G(j, i) = da(j, i) / d;
+        for (int j = 1; j <= 3; j++) {
+            G(j, i) = da(j, 1) / d;
         }
     }
 

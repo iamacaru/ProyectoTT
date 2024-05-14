@@ -25,12 +25,12 @@ Matrix AccelHarmonic(Matrix& r, Matrix& E, int n_max, int m_max) {
     double dUdlon = 0.0;
     double q1 = 0.0, q2 = 0.0, q3 = 0.0;
 
-    for (int n = 0; n <= n_max; ++n) {
+    for (int n = 0; n <= n_max; n++) {
         double b1 = (-gm / (d * d)) * pow(r_ref / d, n) * (n + 1);
         double b2 = (gm / d) * pow(r_ref / d, n);
         double b3 = (gm / d) * pow(r_ref / d, n);
 
-        for (int m = 0; m <= m_max; ++m) {
+        for (int m = 0; m <= m_max; m++) {
             q1 += pnm(n + 1, m + 1) * ((*Global::Cnm)(n + 1, m + 1) * cos(m * lon) + (*Global::Snm)(n + 1, m + 1) * sin(m * lon));
             q2 += dpnm(n + 1, m + 1) * ((*Global::Cnm)(n + 1, m + 1) * cos(m * lon) + (*Global::Snm)(n + 1, m + 1) * sin(m * lon));
             q3 += m * pnm(n + 1, m + 1) * ((*Global::Snm)(n + 1, m + 1) * cos(m * lon) - (*Global::Cnm)(n + 1, m + 1) * sin(m * lon));

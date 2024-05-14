@@ -7,6 +7,8 @@
 #include "../include/NutMatrix.h"
 #include "../include/PoleMatrix.h"
 #include "../include/GHAMatrix.h"
+#include "../include/AccelHarmonic.h"
+#include "../include/G_AccelHarmonic.h"
 
 /*--------------------------------------------------------------------------
 
@@ -45,26 +47,30 @@ Matrix VarEqn(double x, Matrix& yPhi) {
     Matrix E = PoleMatrix(x_pole, y_pole) * GHAMatrix(Mjd_UT1) * T;
 
     // State vector components
-    double valuesR[] = {yPhi(1,1), yPhi(1,2), yPhi(1,3)};
-    Matrix r(1,3, valuesR, 3);
-    double valuesV[] = {yPhi(1,4), yPhi(1,5), yPhi(1,6)};
-    Matrix v(1,3, valuesV, 3);
+    Matrix r = yPhi.subMatrix(1, 3, 1);
+    Matrix v = yPhi.subMatrix(3, 6, 1);
     Matrix Phi(6, 6);
 
-    double vectorDouble[1000];
-
-    // Asignar valores al array (por ejemplo, del 1 al 1000)
-    for (int i = 0; i < 1000; ++i) {
-        vectorDouble[i] = i + 1;
-    }
-    Matrix prueba{1000,1,vectorDouble,1000};
-
     // State transition matrix
-    for (int j = 1; j <= 6; ++j) {
-        for (int i = 1; i <= 6; ++i) {
-            Phi(i,j) = prueba(6*j+i,1);
+    for (int j = 1; j <= 6; j++) {
+        for (int i = 1; i <= 6; i++) {
+            Phi(i,j) = yPhi(6*j+i,1);
         }
     }
+
+    r.print();
+    E.print();
+
+    Matrix a = AccelHarmonic (r, E, 20, 20);
+    Matrix G = G_AccelHarmonic ( r, E, 20, 20);
+
+    a.print();
+    G.print();
+
+
+
+
+
 
 
 

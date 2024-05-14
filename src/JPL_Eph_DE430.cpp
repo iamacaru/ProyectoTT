@@ -72,25 +72,25 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     if (0 <= dt && dt<=4) {
         j = 0;
         Mjd0 = t1;
-    } else if(4 < dt && dt<=8) {
+    } else if (4 < dt && dt<=8) {
         j = 1;
         Mjd0 = t1 + 4 * j;
-    } else if(8 < dt && dt <= 12) {
+    } else if (8 < dt && dt <= 12) {
         j = 2;
         Mjd0 = t1 + 4 * j;
-    } else if(12 < dt && dt <= 16) {
+    } else if (12 < dt && dt <= 16) {
         j = 3;
         Mjd0 = t1 + 4 * j;
-    } else if(16 < dt && dt <= 20) {
+    } else if (16 < dt && dt <= 20) {
         j = 4;
         Mjd0 = t1 + 4 * j;
-    } else if(20 < dt && dt <= 24) {
+    } else if (20 < dt && dt <= 24) {
         j = 5;
         Mjd0 = t1 + 4 * j;
-    } else if(24 < dt && dt <= 28) {
+    } else if (24 < dt && dt <= 28) {
         j = 6;
         Mjd0 = t1 + 4 * j;
-    } else if(28 < dt && dt <= 32) {
+    } else if (28 < dt && dt <= 32) {
         j = 7;
         Mjd0 = t1 + 4 * j;
     }
@@ -117,7 +117,7 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     if (0 <= dt && dt <= 16){
         j = 0;
         Mjd0 = t1;
-    } else if(16 < dt && dt <= 32) {
+    } else if (16 < dt && dt <= 32) {
         j = 1;
         Mjd0 = t1 + 16 * j;
     }
@@ -146,13 +146,13 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     if (0 <= dt && dt <= 8) {
         j = 0;
         Mjd0 = t1;
-    } else if(8 < dt && dt <= 16) {
+    } else if (8 < dt && dt <= 16) {
         j = 1;
         Mjd0 = t1 + 8 * j;
     } else if (16 < dt && dt <= 24) {
         j = 2;
         Mjd0 = t1 + 8 * j;
-    } else if(24 < dt && dt <= 32) {
+    } else if (24 < dt && dt <= 32) {
         j = 3;
         Mjd0 = t1 + 8 * j;
     }
@@ -179,13 +179,13 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     if (0 <= dt && dt <= 16) {
         j = 0;
         Mjd0 = t1;
-    } else if(16 < dt && dt <= 32) {
+    } else if (16 < dt && dt <= 32) {
         j = 1;
         Mjd0 = t1 + 16 * j;
     }
     aux1 = Cx_Venus.subMatrix(10 * j + 1, 10 * j + 10, 1);
-    aux1 = Cy_Venus.subMatrix(10 * j + 1, 10 * j + 10, 1);
-    aux1 = Cz_Venus.subMatrix(10 * j + 1, 10 * j + 10, 1);
+    aux2 = Cy_Venus.subMatrix(10 * j + 1, 10 * j + 10, 1);
+    aux3 = Cz_Venus.subMatrix(10 * j + 1, 10 * j + 10, 1);
     r_Venus = 1e3 * Cheb3D(Mjd_TDB, 10, Mjd0, Mjd0+16, aux1, aux2, aux3).traspuesta();
 
     i = 1;
@@ -246,7 +246,7 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     aux1 = Cx_Uranus.subMatrix(6 * j + 1, 6 * j + 6, 1);
     aux2 = Cy_Uranus.subMatrix(6 * j + 1, 6 * j + 6, 1);
     aux3 = Cz_Uranus.subMatrix(6 * j + 1, 6 * j + 6, 1);
-    r_Uranus = 1e3 * Cheb3D(Mjd_TDB, 6, Mjd0, Mjd0+32, aux2, aux2, aux3).traspuesta();
+    r_Uranus = 1e3 * Cheb3D(Mjd_TDB, 6, Mjd0, Mjd0+32, aux1, aux2, aux3).traspuesta();
 
     i = 1;
     for (int k = 405; k <= 423; k += 6) {
@@ -295,13 +295,13 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     if (0 <= dt && dt <= 8) {
         j = 0;
         Mjd0 = t1;
-    } else if(8 < dt && dt <= 16) {
+    } else if (8 < dt && dt <= 16) {
         j = 1;
         Mjd0 = t1 + 8 * j;
     } else if (16 < dt && dt <= 24) {
         j = 2;
         Mjd0 = t1 + 8 * j;
-    } else if(24 < dt && dt <= 32) {
+    } else if (24 < dt && dt <= 32) {
         j = 3;
         Mjd0 = t1 + 8 * j;
     }
@@ -310,5 +310,52 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     aux3 = Matrix(10,1);
     Matrix Nutations = Cheb3D(Mjd_TDB, 10, Mjd0, Mjd0+8, aux1, aux2, aux3).traspuesta();
 
-    
+    i = 1;
+    for (int k = 899; k <= 929; k += 10) {
+        temp(1, i) = k;
+        i++;
+    }
+    Matrix Cx_Librations = PCtemp.subMatrix((int)temp(1, 1), (int)temp(1, 2) - 1, 1);
+    Matrix Cy_Librations = PCtemp.subMatrix((int)temp(1, 2), (int)temp(1, 3) - 1, 1);
+    Matrix Cz_Librations = PCtemp.subMatrix((int)temp(1, 3), (int)temp(1, 4) - 1, 1);
+    for (i = 1; i <= 3; i++) {
+        temp = temp+30;
+        Cx = PCtemp.subMatrix((int)temp(1, 1), (int)temp(1, 2) - 1, 1);
+        Cy = PCtemp.subMatrix((int)temp(1, 2), (int)temp(1, 3) - 1, 1);
+        Cz = PCtemp.subMatrix((int)temp(1, 3), (int)temp(1, 4) - 1, 1);
+        Cx_Librations = Cx_Librations.concatenar(Cx);
+        Cy_Librations = Cy_Librations.concatenar(Cy);
+        Cz_Librations = Cz_Librations.concatenar(Cz);
+    }
+    if (0 <= dt && dt <= 8) {
+        j = 0;
+        Mjd0 = t1;
+    } else if (8 < dt && dt <= 16) {
+        j = 1;
+        Mjd0 = t1 + 8 * j;
+    } else if (16 < dt && dt <= 24) {
+        j = 2;
+        Mjd0 = t1 + 8 * j;
+    } else if (24 < dt && dt <= 32) {
+        j = 3;
+        Mjd0 = t1 + 8 * j;
+    }
+    aux1 = Cx_Librations.subMatrix(10 * j + 1, 10 * j + 10, 1);
+    aux2 = Cy_Librations.subMatrix(10 * j + 1, 10 * j + 10, 1);
+    aux3 = Cz_Librations.subMatrix(10 * j + 1, 10 * j + 10, 1);
+    Matrix Librations = Cheb3D(Mjd_TDB, 10, Mjd0, Mjd0+8, aux1, aux2, aux3).traspuesta();
+
+    double EMRAT = 81.30056907419062;       // DE430
+    double EMRAT1 = 1 / (1 + EMRAT);
+    Matrix aux4(r_Earth.rows(), r_Earth.columns());
+    r_Earth = r_Earth - EMRAT1 * r_Moon;
+    r_Mercury = aux4 - r_Earth + r_Mercury;
+    r_Venus = aux4 - r_Earth + r_Venus;
+    r_Mars = aux4 - r_Earth + r_Mars;
+    r_Jupiter = aux4 - r_Earth + r_Jupiter;
+    r_Saturn = aux4 - r_Earth + r_Saturn;
+    r_Uranus = aux4 - r_Earth + r_Uranus;
+    r_Neptune = aux4 - r_Earth + r_Neptune;
+    r_Pluto = aux4 - r_Earth + r_Pluto;
+    r_Sun = aux4 - r_Earth + r_Sun;
 }

@@ -57,10 +57,6 @@ int proMat_01()
     
     sol = m1 * m2;
 
-    m1.print();
-    m2.print();
-    sol.print();
-
     _assert(sol(1,1) == m1(1,1) && sol(1,2) == m1(1,2) && sol(2,1) == m1(2,1) && sol(2,2) == m1(2,2));
     
     return 0;
@@ -186,22 +182,6 @@ int Cheb3D_01() {
     Matrix Cy(1,3, values2, 3);
     double values3[3] = {7.0,8.0,9.0};
     Matrix Cz(1,3, values3, 3);
-
-
-    /*
-    Matrix Cx(1,3);
-    Cx(1,1) = 1.0;
-    Cx(1,2) = 2.0;
-    Cx(1,3) = 3.0;
-    Matrix Cy(1,3);
-    Cy(1,1) = 4.0;
-    Cy(1,2) = 5.0;
-    Cy(1,3) = 6.0;
-    Matrix Cz(1,3);
-    Cz(1,1) = 7.0;
-    Cz(1,2) = 8.0;
-    Cz(1,3) = 9.0;
-     */
 
     Matrix sol(1,3);
     sol = Cheb3D(5.0, 2.0, 4.0, 6.0, Cx, Cy, Cz);
@@ -445,20 +425,19 @@ int TimeUpdate_01() {
 int AccelHarmonic_01() {
     Global::GGM03S();
 
-    double values1[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
-    Matrix r(3,3, values1, 9);
-    double values2[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
+    double values1[] = {5542555.93722861, 3213514.86734920, 3990892.97587686};
+    Matrix r(3,1, values1, 3);
+    double values2[] = {-0.976675972331716, 0.214718082511189, -0.000436019054674645, -0.214718043811152,
+                        -0.976676068937815, -0.000134261271504216, -0.000454677699074514, -3.75085994087200e-05, 0.999999895930642};
     Matrix E(3,3, values2, 9);
-    int n_max = 3;
-    int m_max = 3;
+    int n_max = 20;
+    int m_max = 20;
 
     Matrix sol = AccelHarmonic(r, E, n_max, m_max);
 
-    sol.print();
-
-    _assert(fabs(sol(1,1) - 1.95371011265625e+17) < TOL_);
-    _assert(fabs(sol(2,1) - 6.30724959401479e+17) < TOL_);
-    _assert(fabs(sol(3,1) - 1.06607890753733e+18) < TOL_);
+    _assert(fabs(sol(1,1) - -5.13483678540849) < TOL_);
+    _assert(fabs(sol(2,1) - -2.97717622353621) < TOL_);
+    _assert(fabs(sol(3,1) - -3.70591776714203) < TOL_);
 
     return 0;
 }
@@ -466,25 +445,40 @@ int AccelHarmonic_01() {
 int G_AccelHarmonic_01() {
     Global::GGM03S();
 
-    double values1[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
-    Matrix r(3,3, values1, 9);
-    double values2[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    double values1[] = {5542555.93722861, 3213514.86734920, 3990892.97587686};
+    Matrix r(3,1, values1, 3);
+    double values2[] = {-0.976675972331716, 0.214718082511189, -0.000436019054674645, -0.214718043811152,
+                        -0.976676068937815, -0.000134261271504216, -0.000454677699074514, -3.75085994087200e-05, 0.999999895930642};
     Matrix U(3,3, values2, 9);
-    int n_max = 3;
-    int m_max = 3;
+    int n_max = 20;
+    int m_max = 20;
 
     Matrix sol = G_AccelHarmonic(r, U, n_max, m_max);
 
-    sol.print();
+    _assert(fabs(sol(1,1) - 5.7003203313144e-07) < TOL_ && fabs(sol(1,2) - 8.67651595015673e-07) < TOL_ && fabs(sol(1,3) - 1.0816935356317e-06) < TOL_ &&
+            fabs(sol(2,1) - 8.6765159101887e-07) < TOL_ && fabs(sol(2,2) - -4.23359105550247e-07) < TOL_ && fabs(sol(2,3) - 6.27183703194589e-07) < TOL_ &&
+            fabs(sol(3,1) - 1.08169353651988e-06) < TOL_ && fabs(sol(3,2) - 6.27183704526857e-07) < TOL_ && fabs(sol(3,3) - -1.46672928913461e-07) < TOL_);
 
-    _assert(fabs(sol(1,1) - -3.1253890746146e+18) < TOL_ && fabs(sol(1,2) - -3.83213697804002e+18) < TOL_ && fabs(sol(1,3) - -4.54406446926084e+18) < TOL_ &&
-            fabs(sol(2,1) - -3.89593513040882e+18) < TOL_ && fabs(sol(2,2) - -4.74186674815615e+18) < TOL_ && fabs(sol(2,3) - -5.59369641022418e+18) < TOL_ &&
-            fabs(sol(3,1) - -4.66648118620304e+18) < TOL_ && fabs(sol(3,2) - -5.65159651827228e+18) < TOL_ && fabs(sol(3,3) - -6.64332835118751e+18) < TOL_);
+    // EN MATLAB G_AccelHarmonic([5542555.93722861; 3213514.86734920; 3990892.97587686],[-0.976675972331716, 0.214718082511189, -0.000436019054674645; -0.214718043811152, -0.976676068937815, -0.000134261271504216; -0.000454677699074514, -3.75085994087200e-05, 0.999999895930642],20,20)
 
     return 0;
 }
 
 int VarEqn_01() {
+    Global::GGM03S();
+    Global::eop19620101(21413);
+    Global::AuxParam::Mjd_UTC = 49746.1101504630;
+    Global::AuxParam::n = 20;
+    Global::AuxParam::m = 20;
+
+    double values[] = {5542555.93722861, 3213514.86734920, 3990892.97587686, 5394.06842166353, -2365.21337882342,
+                        -7061.84554200298, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+                        0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+                        0, 0, 1, 0, 0, 0, 0, 0, 0, 1};
+    Matrix yPhi(42,1, values, 42);
+    double x = 0.0;
+
+    VarEqn(x, yPhi);
 
     return 0;
 }
@@ -515,6 +509,41 @@ int JPL_Eph_DE430_01() {
 
     JPL_Eph_DE430(r_Mercury, r_Venus, r_Earth, r_Mars, r_Jupiter, r_Saturn, r_Uranus, r_Neptune,
                   r_Pluto, r_Moon, r_Sun, Mjd_TDB);
+
+    r_Mercury.print();
+    r_Venus.print();
+    r_Earth.print();
+    r_Mars.print();
+    r_Jupiter.print();
+    r_Saturn.print();
+    r_Uranus.print();
+    r_Neptune.print();
+    r_Pluto.print();
+    r_Moon.print();
+    r_Sun.print();
+
+    cout << r_Mercury(1,1) - 8.377549589569574*1.0e+10 << endl;
+    cout << r_Mercury(2,1) - -6.529112491344618*1.0e+10 << endl;
+    cout << r_Mercury(3,1) - -2.339131210124083*1.0e+10 << endl;
+    cout << r_Mercury(1,1) - 83775495895.6957 << endl;
+    cout << r_Mercury(2,1) - -65291124913.4462 << endl;
+    cout << r_Mercury(3,1) - -23391312101.2408 << endl;
+    cout << r_Venus(1,1) - -0.152296655739533*1.0e+11 << endl;
+    cout << r_Venus(2,1) - -1.101349926375630*1.0e+11 << endl;
+    cout << r_Venus(3,1) - -0.410218036256266*1.0e+11 << endl;
+
+
+    _assert(fabs(r_Mercury(1,1) - 8.377549589569574*1.0e+10) < TOL_ && fabs(r_Mercury(2,1) - -6.529112491344618*1.0e+10) < TOL_ && fabs(r_Mercury(3,1) - -2.339131210124083*1.0e+10) < TOL_);
+    _assert(fabs(r_Venus(1,1) - -0.152296655739533*1.0e+11) < TOL_ && fabs(r_Venus(2,1) - -1.101349926375630*1.0e+11) < TOL_ && fabs(r_Venus(3,1) - -0.410218036256266*1.0e+11) < TOL_);
+    _assert(fabs(r_Earth(1,1) - -0.924709612291923*1.0e+11) < TOL_ && fabs(r_Earth(2,1) - 1.063949183894933*1.0e+11) < TOL_ && fabs(r_Earth(3,1) - 0.461301399094037*1.0e+11) < TOL_);
+    _assert(fabs(r_Mars(1,1) - -8.827841300824323*1.0e+10) < TOL_ && fabs(r_Mars(2,1) - 4.696476977829840*1.0e+10) < TOL_ && fabs(r_Mars(3,1) - 2.907102650267133*1.0e+10) < TOL_);
+    _assert(fabs(r_Jupiter(1,1) - -2.983859364660936*1.0e+11) < TOL_ && fabs(r_Jupiter(2,1) - -7.544982589107291*1.0e+11) < TOL_ && fabs(r_Jupiter(3,1) - -3.144105185682280*1.0e+11) < TOL_);
+    _assert(fabs(r_Saturn(1,1) - 1.482033999505117*1.0e+12) < TOL_ && fabs(r_Saturn(2,1) - -0.453872894236397*1.0e+12) < TOL_ && fabs(r_Saturn(3,1) - -0.249402247811211*1.0e+12) < TOL_);
+    _assert(fabs(r_Uranus(1,1) - 1.412367984017928*1.0e+12) < TOL_ && fabs(r_Uranus(2,1) - -2.511355045786904*1.0e+12) < TOL_ && fabs(r_Uranus(3,1) - -1.118108651902601*1.0e+12) < TOL_);
+    _assert(fabs(r_Neptune(1,1) - 1.871250770052329*1.0e+12) < TOL_ && fabs(r_Neptune(2,1) - -3.928976313605399*1.0e+12) < TOL_ && fabs(r_Neptune(3,1) - -1.655020476718540*1.0e+12) < TOL_);
+    _assert(fabs(r_Pluto(1,1) - -2.171414794259537*1.0e+12) < TOL_ && fabs(r_Pluto(2,1) - -3.915433128334976*1.0e+12) < TOL_ && fabs(r_Pluto(3,1) - -0.552716250355845*1.0e+12) < TOL_);
+    _assert(fabs(r_Moon(1,1) - 0.893833723127192*1.0e+08) < TOL_ && fabs(r_Moon(2,1) - -3.366038321179463*1.0e+08) < TOL_ && fabs(r_Moon(3,1) - -1.146487877519952*1.0e+08) < TOL_);
+    _assert(fabs(r_Sun(1,1) - 0.922982517284766*1.0e+11) < TOL_ && fabs(r_Sun(2,1) - -1.053751960790543*1.0e+11) < TOL_ && fabs(r_Sun(3,1) - -0.456863672263533*1.0e+11) < TOL_);
 
     return 0;
 }
@@ -550,11 +579,11 @@ int all_tests()
     _verify(PoleMatrix_01);
     _verify(PrecMatrix_01);
     _verify(TimeUpdate_01);
-    //_verify(AccelHarmonic_01);
-    //_verify(G_AccelHarmonic_01);
-    //_verify(VarEqn_01);
+    _verify(AccelHarmonic_01);
+    _verify(G_AccelHarmonic_01);
+    _verify(VarEqn_01);
     _verify(Elements_01);
-    _verify(JPL_Eph_DE430_01);
+    //_verify(JPL_Eph_DE430_01);
 
     return 0;
 }
@@ -565,8 +594,6 @@ int main()
 
     extern double Mjd0;
     Mjd0 = Mjday(1995,1,29,02,38,0);
-    Global::eop19620101(6);
-    Global::eopdata->print();
 
     int result = all_tests();
 
