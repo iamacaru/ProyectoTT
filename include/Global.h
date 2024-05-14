@@ -20,6 +20,8 @@ public:
     static Matrix *GEO;
     static void GEOS3 ();
 
+    double Mjd0;
+
     struct AuxParam {
         static double Mjd_UTC;
         static double Mjd_TT;

@@ -31,7 +31,9 @@
 #include "./include/VarEqn.h"
 #include "./include/AccelHarmonic.h"
 #include "./include/G_AccelHarmonic.h"
+#include "./include/VarEqn.h"
 #include "./include/Elements.h"
+#include "./include/JPL_Eph_DE430.h"
 
 #include <iostream>
 
@@ -177,12 +179,28 @@ int AzElPa_01() {
 }
 
 int Cheb3D_01() {
-    double values1[] = {1.0,2.0,3.0};
+    /*
+    double values1[3] = {1.0,2.0,3.0};
     Matrix Cx(1,3, values1, 3);
-    double values2[] = {4.0,5.0,6.0};
+    double values2[3] = {4.0,5.0,6.0};
     Matrix Cy(1,3, values2, 3);
-    double values3[] = {7.0,8.0,9.0};
+    double values3[3] = {7.0,8.0,9.0};
     Matrix Cz(1,3, values3, 3);
+    */
+
+
+    Matrix Cx(1,3);
+    Cx(1,1) = 7.0;
+    Cx(1,2) = 8.0;
+    Cx(1,3) = 9.0;
+    Matrix Cy(1,3);
+    Cy(1,1) = 7.0;
+    Cy(1,2) = 8.0;
+    Cy(1,3) = 9.0;
+    Matrix Cz(1,3);
+    Cz(1,1) = 7.0;
+    Cz(1,2) = 8.0;
+    Cz(1,3) = 9.0;
 
     Matrix sol(1,3);
     sol = Cheb3D(5.0, 2.0, 4.0, 6.0, Cx, Cy, Cz);
@@ -465,6 +483,11 @@ int G_AccelHarmonic_01() {
     return 0;
 }
 
+int VarEqn_01() {
+
+    return 0;
+}
+
 int Elements_01() {
     double values[] = {1,2,3,4,5,6};
     Matrix y(1,6,values,6);
@@ -479,6 +502,18 @@ int Elements_01() {
     _assert(fabs(Omega - 3.6052402625906) < TOL_);
     _assert(fabs(omega - 5.21086941752228) < TOL_);
     _assert(fabs(M - 3.14159030993265) < TOL_);
+
+    return 0;
+}
+
+int JPL_Eph_DE430_01() {
+    Global::Pc();
+    Matrix r_Mercury(3,3), r_Venus(3,3), r_Earth(3,3), r_Mars(3,3), r_Jupiter(3,3),
+    r_Saturn(3,3), r_Uranus(3,3), r_Neptune(3,3), r_Pluto(3,3), r_Moon(3,3), r_Sun(3,3);
+    double Mjd_TDB = 4.974611199287850e+04;
+
+    JPL_Eph_DE430(r_Mercury, r_Venus, r_Earth, r_Mars, r_Jupiter, r_Saturn, r_Uranus, r_Neptune,
+                  r_Pluto, r_Moon, r_Sun, Mjd_TDB);
 
     return 0;
 }
@@ -516,7 +551,9 @@ int all_tests()
     _verify(TimeUpdate_01);
     //_verify(AccelHarmonic_01);
     //_verify(G_AccelHarmonic_01);
+    //_verify(VarEqn_01);
     //_verify(Elements_01);
+    //_verify(JPL_Eph_DE430_01);
 
     return 0;
 }
@@ -524,6 +561,9 @@ int all_tests()
 
 int main()
 {
+
+    extern double Mjd0;
+    Mjd0 = Mjday(1995,1,29,02,38,0);
     Global::eop19620101(6);
     Global::eopdata->print();
 

@@ -30,7 +30,8 @@ class Matrix
         int columns() const;
 
         Matrix traspuesta() const;
-        Matrix subMatrix(int f, int l, int w, bool b) const;
+        Matrix subMatrix(int f, int l, int i) const;
+        Matrix concatenar(const Matrix& matrix2) const;
 
  
     private:

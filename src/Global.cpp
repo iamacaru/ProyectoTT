@@ -9,6 +9,8 @@ Matrix *Global::PC;
 
 Matrix *Global::GEO;
 
+double Mjd0;
+
 void Global::eop19620101(int f) {
     Global::eopdata = new Matrix(f, 13);
 

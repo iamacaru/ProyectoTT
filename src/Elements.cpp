@@ -4,8 +4,8 @@
 #include <cmath>
 
 void elements(Matrix& y, double& p, double& a, double& e, double& i, double& Omega,double& omega, double& M) {
-    Matrix r = y.subMatrix(1,3);                                                  // Position
-    Matrix v = y.subMatrix(4,6);                                                  // Velocity
+    Matrix r = y.subMatrix(1,3, 1);                                                  // Position
+    Matrix v = y.subMatrix(4,6, 1);                                                  // Velocity
 
     Matrix h = r.cross(v);                                                                   // Areal velocity
     double magh = h.norm();
@@ -25,7 +25,7 @@ void elements(Matrix& y, double& p, double& a, double& e, double& i, double& Ome
     double eSinE = r.dot(v) / sqrt((Constants::GM_Earth) * a);                            // e*sin(E)
 
     double e2 = eCosE * eCosE + eSinE * eSinE;
-    e  = sqrt(e2);                                                                        // Eccentricity
+    e  = sqrt(e2);                                                                               // Eccentricity
     double E  = atan2(eSinE,eCosE);                                                           // Eccentric anomaly
 
     M  = fmod(E-eSinE,(Constants::pi2));                                                      // Mean anomaly

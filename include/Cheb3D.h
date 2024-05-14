@@ -18,6 +18,6 @@
 
 %--------------------------------------------------------------------------*/
 
-Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix&  Cx, Matrix& Cy, Matrix& Cz);
+Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix  Cx, Matrix Cy, Matrix Cz);
 
 #endif

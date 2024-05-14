@@ -215,23 +215,28 @@ Matrix Matrix::traspuesta() const {
     return {col, fil, values, col * fil};
 }
 
-Matrix Matrix::subMatrix(int f, int l, int w, bool b) const{
+Matrix Matrix::subMatrix(int f, int l, int i) const{
+    Matrix r(1, l - f + 1);
+
     int k = 1;
-    if (b) {
-        Matrix r(1, l - f + 1);
-        for (int i = f; i <= l; i++) {
-            r(1, k) = matrix[w - 1][i - 1];
-            k++;
-        }
-
-        return r;
-    } else {
-        Matrix r(l - f + 1, 1);
-        for (int i = f; i <= l; i++) {
-            r(k, 1) = matrix[i - 1][w - 1];
-            k++;
-        }
-
-        return r;
+    for (int j = f; j <= l; j++) {
+        r(1, k) = matrix[i - 1][j - 1];
+        k++;
     }
+
+    return r;
+}
+
+Matrix Matrix::concatenar(const Matrix& matrix2) const {
+    Matrix r(1, this->col + matrix2.col);
+
+    for (int j = 0; j < this->col; ++j) {
+        r(1, j + 1) = matrix[0][j];
+    }
+
+    for (int j = 1; j <= matrix2.col; ++j) {
+        r(1, this->col + j) = matrix2(1, j);
+    }
+
+    return r;
 }
