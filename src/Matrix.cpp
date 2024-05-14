@@ -50,10 +50,15 @@ void Matrix::initMatrix()
  
 Matrix& Matrix::operator=(const Matrix& matrix2)
 {
+    this->fil = matrix2.rows();
+    this->col = matrix2.columns();
+
+    initMatrix();
+
     for (int i = 0; i < fil; i++)
         for (int j = 0; j < col; j++)
             this->matrix[i][j] = matrix2.matrix[i][j];
- 
+
     return *this;
 }
  
@@ -180,14 +185,14 @@ double Matrix::dot(const Matrix& matrix2) const {
 }
 
 Matrix Matrix::cross(const Matrix& matrix2) const {
-    double x = matrix[0][1] * matrix2(0,2) - matrix[0][2] * matrix2(0,1);
-    double y = matrix[0][2] * matrix2(0,0) - matrix[0][0] * matrix2(0,2);
-    double z = matrix[0][0] * matrix2(0,1) - matrix[0][1] * matrix2(0,0);
+    double x = matrix[0][1] * matrix2(1,3) - matrix[0][2] * matrix2(1,2);
+    double y = matrix[0][2] * matrix2(1,1) - matrix[0][0] * matrix2(1,3);
+    double z = matrix[0][0] * matrix2(1,2) - matrix[0][1] * matrix2(1,1);
 
     Matrix result(1, 3);
-    result(0, 0) = x;
-    result(0, 1) = y;
-    result(0, 2) = z;
+    result(1, 1) = x;
+    result(1, 2) = y;
+    result(1, 3) = z;
 
     return result;
 }

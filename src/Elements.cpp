@@ -4,8 +4,8 @@
 #include <cmath>
 
 void elements(Matrix& y, double& p, double& a, double& e, double& i, double& Omega,double& omega, double& M) {
-    Matrix r = y.subMatrix(1,3, 1);                                                  // Position
-    Matrix v = y.subMatrix(4,6, 1);                                                  // Velocity
+    Matrix r = y.subMatrix(1,3, 1);                                                          // Position
+    Matrix v = y.subMatrix(4,6, 1);                                                          // Velocity
 
     Matrix h = r.cross(v);                                                                   // Areal velocity
     double magh = h.norm();
@@ -14,6 +14,9 @@ void elements(Matrix& y, double& p, double& a, double& e, double& i, double& Ome
 
     Omega = atan2 (h(1,1), -h(1,2));                                                // Long. ascend. node
     Omega = fmod(Omega,Constants::pi2);
+    if (Omega < 0) {
+        Omega += Constants::pi2;
+    }
     i = atan2( sqrt(h(1,1) * h(1,1)+h(1,2) * h(1,2)), h(1,3));    // Inclination
     double u = atan2(r(1,3)*H, -r(1,1) * h(1,2) + r(1,2) * h(1,1));  // Arg. of latitude
 
@@ -33,4 +36,7 @@ void elements(Matrix& y, double& p, double& a, double& e, double& i, double& Ome
     double nu = atan2(sqrt(1.0-e2)*eSinE, eCosE-e2);                                       // True anomaly
 
     omega = fmod(u-nu, (Constants::pi2));                                                     // Arg. of perihelion
+    if (omega < 0) {
+        omega += Constants::pi2;
+    }
 }

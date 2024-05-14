@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix Cx, Matrix Cy, Matrix Cz) {
+Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix& Cx, Matrix& Cy, Matrix& Cz) {
     // Check validity
     if ((t < Ta) || (t > Tb)) {
         printf("ERROR: Time out of range in Cheb3D");
@@ -17,8 +17,6 @@ Matrix Cheb3D(double t, int N, double Ta, double Tb, Matrix Cx, Matrix Cy, Matri
 
     Matrix old_f1(1, 3);
     double values[3] = {0,0,0};
-    f1.print();
-    Cx.print();
     for (int i = N; i > 1; i--) {
         old_f1 = f1;
         values[0] = Cx(1,i);

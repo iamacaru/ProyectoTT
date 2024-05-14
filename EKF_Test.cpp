@@ -179,28 +179,29 @@ int AzElPa_01() {
 }
 
 int Cheb3D_01() {
-    /*
+
     double values1[3] = {1.0,2.0,3.0};
     Matrix Cx(1,3, values1, 3);
     double values2[3] = {4.0,5.0,6.0};
     Matrix Cy(1,3, values2, 3);
     double values3[3] = {7.0,8.0,9.0};
     Matrix Cz(1,3, values3, 3);
-    */
 
 
+    /*
     Matrix Cx(1,3);
-    Cx(1,1) = 7.0;
-    Cx(1,2) = 8.0;
-    Cx(1,3) = 9.0;
+    Cx(1,1) = 1.0;
+    Cx(1,2) = 2.0;
+    Cx(1,3) = 3.0;
     Matrix Cy(1,3);
-    Cy(1,1) = 7.0;
-    Cy(1,2) = 8.0;
-    Cy(1,3) = 9.0;
+    Cy(1,1) = 4.0;
+    Cy(1,2) = 5.0;
+    Cy(1,3) = 6.0;
     Matrix Cz(1,3);
     Cz(1,1) = 7.0;
     Cz(1,2) = 8.0;
     Cz(1,3) = 9.0;
+     */
 
     Matrix sol(1,3);
     sol = Cheb3D(5.0, 2.0, 4.0, 6.0, Cx, Cy, Cz);
@@ -552,8 +553,8 @@ int all_tests()
     //_verify(AccelHarmonic_01);
     //_verify(G_AccelHarmonic_01);
     //_verify(VarEqn_01);
-    //_verify(Elements_01);
-    //_verify(JPL_Eph_DE430_01);
+    _verify(Elements_01);
+    _verify(JPL_Eph_DE430_01);
 
     return 0;
 }
