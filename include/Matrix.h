@@ -32,6 +32,7 @@ class Matrix
         Matrix traspuesta() const;
         Matrix subMatrix(int f, int l, int i) const;
         Matrix concatenar(const Matrix& matrix2) const;
+        bool isEqual(const Matrix& matrix2, double TOL_) const;
 
  
     private:

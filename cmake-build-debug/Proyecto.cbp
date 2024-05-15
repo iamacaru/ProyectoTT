@@ -82,7 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/EKF_GEOS3.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/EKF_Test.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/AccelHarmonic.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/AccelPointMass.h">
@@ -97,7 +103,22 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/EccAnom.h">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Elements.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/EqnEquinox.h">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Frac.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/GHAMatrix.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/G_AccelHarmonic.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Gast.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Geodetic.h">
@@ -106,7 +127,13 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Global.h">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Gmst.h">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/IERS.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/JPL_Eph_DE430.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Legendre.h">
@@ -127,7 +154,16 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/NutAngles.h">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/NutMatrix.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/PoleMatrix.h">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Position.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/PrecMatrix.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/R_x.h">
@@ -145,10 +181,19 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Sign_.h">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/TimeUpdate.h">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Timediff.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Unit.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/VarEqn.h">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/AccelHarmonic.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/AccelPointMass.cpp">
@@ -160,13 +205,25 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Cheb3D.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
-		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EKF_GEOS3.cpp">
-			<Option target="Proyecto"/>
-		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EccAnom.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Elements.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EqnEquinox.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Frac.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/GHAMatrix.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/G_AccelHarmonic.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Gast.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Geodetic.cpp">
@@ -175,7 +232,13 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Global.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Gmst.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/IERS.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/JPL_Eph_DE430.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Legendre.cpp">
@@ -196,7 +259,16 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/NutAngles.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/NutMatrix.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/PoleMatrix.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Position.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/PrecMatrix.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/R_x.cpp">
@@ -211,10 +283,16 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Sign_.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/TimeUpdate.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Timediff.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Unit.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/VarEqn.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/CMakeLists.txt">

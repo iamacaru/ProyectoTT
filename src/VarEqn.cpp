@@ -47,8 +47,10 @@ Matrix VarEqn(double x, Matrix& yPhi) {
     Matrix E = PoleMatrix(x_pole, y_pole) * GHAMatrix(Mjd_UT1) * T;
 
     // State vector components
-    Matrix r = yPhi.subMatrix(1, 3, 1);
-    Matrix v = yPhi.subMatrix(3, 6, 1);
+    double valuesR[] = {yPhi(1, 1), yPhi(2, 1), yPhi(3, 1)};
+    Matrix r(3, 1, valuesR, 3);
+    double valuesV[] = {yPhi(4, 1), yPhi(5, 1), yPhi(6, 1)};
+    Matrix v(3, 1, valuesV, 3);
     Matrix Phi(6, 6);
 
     // State transition matrix
@@ -58,25 +60,40 @@ Matrix VarEqn(double x, Matrix& yPhi) {
         }
     }
 
-    r.print();
-    E.print();
-
+    // Acceleration and gradient
     Matrix a = AccelHarmonic (r, E, 20, 20);
     Matrix G = G_AccelHarmonic ( r, E, 20, 20);
 
-    a.print();
-    G.print();
+    // Time derivative of state transition matrix
+    Matrix yPhip(42, 1);
+    Matrix dfdy(6, 6);
 
+    for (int i = 1; i <= 3; i++) {
+        for (int j = 1; j <= 3; j++) {
+            dfdy(i , j) = 0.0;                        // dv/dr(i,j)
+            dfdy(i + 3, j) = G(i, j);               // da/dr(i,j)
+            if (i == j) {
+                dfdy(i, j + 3) = 1;
+            } else {
+                dfdy(i, j + 3) = 0;                 // dv/dv(i,j)
+            }
+            dfdy(i, j + 3) = 0;                     // dv/dv(i,j)
+        }
+    }
 
+    Matrix Phip = dfdy * Phi;
 
+    // Derivative of combined state vector and state transition matrix
+    for (int i = 1; i <= 3; i++) {
+        yPhip(i, 1)   = v(i, 1);                 // dr/dt(i)
+        yPhip(i+3, 1) = a(i, 1);               // dv/dt(i)
+    }
 
+    for (int i = 1; i <= 6; i++) {
+        for (int j = 1; j <= 6; j++) {
+            yPhip(6 * j + i, 1) = Phip(i, j);    // dPhi/dt(i,j)
+        }
+    }
 
-
-
-
-
-
-
-
-    return {3,3};
+    return yPhip;
 }

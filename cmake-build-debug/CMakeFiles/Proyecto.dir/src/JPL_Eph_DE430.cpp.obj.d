@@ -1,0 +1,23 @@
+CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj: \
+ C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\JPL_Eph_DE430.cpp \
+ c:\users\iamacaru\documents\github\proyectott\include\jpl_eph_de430.h \
+ c:\users\iamacaru\documents\github\proyectott\include\Matrix.h \
+ c:\users\iamacaru\documents\github\proyectott\include\global.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\cstdio \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\mingw32\bits\c++config.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\mingw32\bits\os_defines.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\mingw32\bits\cpu_defines.h \
+ c:\urapps\clion_2022_2_2\mingw\include\stdio.h \
+ c:\urapps\clion_2022_2_2\mingw\include\_mingw.h \
+ c:\urapps\clion_2022_2_2\mingw\include\msvcrtver.h \
+ c:\urapps\clion_2022_2_2\mingw\include\w32api.h \
+ c:\urapps\clion_2022_2_2\mingw\include\sdkddkver.h \
+ c:\urapps\clion_2022_2_2\mingw\include\features.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\stddef.h \
+ c:\urapps\clion_2022_2_2\mingw\include\sys/types.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\stdarg.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\cstdlib \
+ c:\urapps\clion_2022_2_2\mingw\include\stdlib.h \
+ c:\urapps\clion_2022_2_2\mingw\include\alloca.h \
+ c:\urapps\clion_2022_2_2\mingw\lib\gcc\mingw32\8.2.0\include\c++\bits\std_abs.h \
+ c:\users\iamacaru\documents\github\proyectott\include\cheb3d.h

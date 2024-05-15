@@ -245,3 +245,19 @@ Matrix Matrix::concatenar(const Matrix& matrix2) const {
 
     return r;
 }
+
+bool Matrix::isEqual(const Matrix& matrix2, double TOL_) const {
+    if (this->fil != matrix2.fil || this->col != matrix2.col) {
+        return false;
+    }
+
+    for (int i = 0; i < this->fil; ++i) {
+        for (int j = 0; j < this->col; ++j) {
+            if (fabs(this->matrix[i][j] - matrix2.matrix[i][j]) > TOL_) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
