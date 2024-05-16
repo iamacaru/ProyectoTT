@@ -62,8 +62,6 @@ add_executable(Proyecto
         src/AccelHarmonic.cpp
         include/G_AccelHarmonic.h
         src/G_AccelHarmonic.cpp
-        include/Elements.h
-        src/Elements.cpp
         include/JPL_Eph_DE430.h
         src/JPL_Eph_DE430.cpp
-)
+        include/Accel.h src/Accel.cpp)

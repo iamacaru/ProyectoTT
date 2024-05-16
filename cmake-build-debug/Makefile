@@ -176,6 +176,30 @@ EKF_Test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/EKF_Test.cpp.s
 .PHONY : EKF_Test.cpp.s
 
+src/Accel.obj: src/Accel.cpp.obj
+.PHONY : src/Accel.obj
+
+# target to build an object file
+src/Accel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Accel.cpp.obj
+.PHONY : src/Accel.cpp.obj
+
+src/Accel.i: src/Accel.cpp.i
+.PHONY : src/Accel.i
+
+# target to preprocess a source file
+src/Accel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Accel.cpp.i
+.PHONY : src/Accel.cpp.i
+
+src/Accel.s: src/Accel.cpp.s
+.PHONY : src/Accel.s
+
+# target to generate assembly for a file
+src/Accel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Accel.cpp.s
+.PHONY : src/Accel.cpp.s
+
 src/AccelHarmonic.obj: src/AccelHarmonic.cpp.obj
 .PHONY : src/AccelHarmonic.obj
 
@@ -295,30 +319,6 @@ src/EccAnom.s: src/EccAnom.cpp.s
 src/EccAnom.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/EccAnom.cpp.s
 .PHONY : src/EccAnom.cpp.s
-
-src/Elements.obj: src/Elements.cpp.obj
-.PHONY : src/Elements.obj
-
-# target to build an object file
-src/Elements.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Elements.cpp.obj
-.PHONY : src/Elements.cpp.obj
-
-src/Elements.i: src/Elements.cpp.i
-.PHONY : src/Elements.i
-
-# target to preprocess a source file
-src/Elements.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Elements.cpp.i
-.PHONY : src/Elements.cpp.i
-
-src/Elements.s: src/Elements.cpp.s
-.PHONY : src/Elements.s
-
-# target to generate assembly for a file
-src/Elements.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Proyecto.dir\build.make CMakeFiles/Proyecto.dir/src/Elements.cpp.s
-.PHONY : src/Elements.cpp.s
 
 src/EqnEquinox.obj: src/EqnEquinox.cpp.obj
 .PHONY : src/EqnEquinox.obj
@@ -1007,6 +1007,9 @@ help:
 	@echo ... EKF_Test.obj
 	@echo ... EKF_Test.i
 	@echo ... EKF_Test.s
+	@echo ... src/Accel.obj
+	@echo ... src/Accel.i
+	@echo ... src/Accel.s
 	@echo ... src/AccelHarmonic.obj
 	@echo ... src/AccelHarmonic.i
 	@echo ... src/AccelHarmonic.s
@@ -1022,9 +1025,6 @@ help:
 	@echo ... src/EccAnom.obj
 	@echo ... src/EccAnom.i
 	@echo ... src/EccAnom.s
-	@echo ... src/Elements.obj
-	@echo ... src/Elements.i
-	@echo ... src/Elements.s
 	@echo ... src/EqnEquinox.obj
 	@echo ... src/EqnEquinox.i
 	@echo ... src/EqnEquinox.s

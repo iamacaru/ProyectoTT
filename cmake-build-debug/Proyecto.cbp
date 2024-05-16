@@ -88,6 +88,9 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/EKF_Test.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Accel.h">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/AccelHarmonic.h">
 			<Option target="Proyecto"/>
 		</Unit>
@@ -101,9 +104,6 @@
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/EccAnom.h">
-			<Option target="Proyecto"/>
-		</Unit>
-		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/Elements.h">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/EqnEquinox.h">
@@ -193,6 +193,9 @@
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/include/VarEqn.h">
 			<Option target="Proyecto"/>
 		</Unit>
+		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Accel.cpp">
+			<Option target="Proyecto"/>
+		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/AccelHarmonic.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
@@ -206,9 +209,6 @@
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EccAnom.cpp">
-			<Option target="Proyecto"/>
-		</Unit>
-		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/Elements.cpp">
 			<Option target="Proyecto"/>
 		</Unit>
 		<Unit filename="C:/Users/iamacaru/Documents/GitHub/ProyectoTT/src/EqnEquinox.cpp">

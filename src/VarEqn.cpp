@@ -77,7 +77,7 @@ Matrix VarEqn(double x, Matrix& yPhi) {
             } else {
                 dfdy(i, j + 3) = 0;                 // dv/dv(i,j)
             }
-            dfdy(i, j + 3) = 0;                     // dv/dv(i,j)
+            dfdy(i + 3, j + 3) = 0;                     // dv/dv(i,j)
         }
     }
 

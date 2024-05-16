@@ -578,26 +578,11 @@ CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.s"
 	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\G_AccelHarmonic.cpp -o CMakeFiles\Proyecto.dir\src\G_AccelHarmonic.cpp.s
 
-CMakeFiles/Proyecto.dir/src/Elements.cpp.obj: CMakeFiles/Proyecto.dir/flags.make
-CMakeFiles/Proyecto.dir/src/Elements.cpp.obj: CMakeFiles/Proyecto.dir/includes_CXX.rsp
-CMakeFiles/Proyecto.dir/src/Elements.cpp.obj: ../src/Elements.cpp
-CMakeFiles/Proyecto.dir/src/Elements.cpp.obj: CMakeFiles/Proyecto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\iamacaru\Documents\GitHub\ProyectoTT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Proyecto.dir/src/Elements.cpp.obj"
-	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Proyecto.dir/src/Elements.cpp.obj -MF CMakeFiles\Proyecto.dir\src\Elements.cpp.obj.d -o CMakeFiles\Proyecto.dir\src\Elements.cpp.obj -c C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Elements.cpp
-
-CMakeFiles/Proyecto.dir/src/Elements.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Proyecto.dir/src/Elements.cpp.i"
-	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Elements.cpp > CMakeFiles\Proyecto.dir\src\Elements.cpp.i
-
-CMakeFiles/Proyecto.dir/src/Elements.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Proyecto.dir/src/Elements.cpp.s"
-	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Elements.cpp -o CMakeFiles\Proyecto.dir\src\Elements.cpp.s
-
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj: CMakeFiles/Proyecto.dir/flags.make
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj: CMakeFiles/Proyecto.dir/includes_CXX.rsp
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj: ../src/JPL_Eph_DE430.cpp
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj: CMakeFiles/Proyecto.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\iamacaru\Documents\GitHub\ProyectoTT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\iamacaru\Documents\GitHub\ProyectoTT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj"
 	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj -MF CMakeFiles\Proyecto.dir\src\JPL_Eph_DE430.cpp.obj.d -o CMakeFiles\Proyecto.dir\src\JPL_Eph_DE430.cpp.obj -c C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\JPL_Eph_DE430.cpp
 
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.i: cmake_force
@@ -607,6 +592,21 @@ CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.i: cmake_force
 CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.s"
 	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\JPL_Eph_DE430.cpp -o CMakeFiles\Proyecto.dir\src\JPL_Eph_DE430.cpp.s
+
+CMakeFiles/Proyecto.dir/src/Accel.cpp.obj: CMakeFiles/Proyecto.dir/flags.make
+CMakeFiles/Proyecto.dir/src/Accel.cpp.obj: CMakeFiles/Proyecto.dir/includes_CXX.rsp
+CMakeFiles/Proyecto.dir/src/Accel.cpp.obj: ../src/Accel.cpp
+CMakeFiles/Proyecto.dir/src/Accel.cpp.obj: CMakeFiles/Proyecto.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\iamacaru\Documents\GitHub\ProyectoTT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Proyecto.dir/src/Accel.cpp.obj"
+	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Proyecto.dir/src/Accel.cpp.obj -MF CMakeFiles\Proyecto.dir\src\Accel.cpp.obj.d -o CMakeFiles\Proyecto.dir\src\Accel.cpp.obj -c C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Accel.cpp
+
+CMakeFiles/Proyecto.dir/src/Accel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Proyecto.dir/src/Accel.cpp.i"
+	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Accel.cpp > CMakeFiles\Proyecto.dir\src\Accel.cpp.i
+
+CMakeFiles/Proyecto.dir/src/Accel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Proyecto.dir/src/Accel.cpp.s"
+	C:\URApps\CLion_2022_2_2\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\iamacaru\Documents\GitHub\ProyectoTT\src\Accel.cpp -o CMakeFiles\Proyecto.dir\src\Accel.cpp.s
 
 # Object files for target Proyecto
 Proyecto_OBJECTS = \
@@ -644,8 +644,8 @@ Proyecto_OBJECTS = \
 "CMakeFiles/Proyecto.dir/src/VarEqn.cpp.obj" \
 "CMakeFiles/Proyecto.dir/src/AccelHarmonic.cpp.obj" \
 "CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.obj" \
-"CMakeFiles/Proyecto.dir/src/Elements.cpp.obj" \
-"CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj"
+"CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj" \
+"CMakeFiles/Proyecto.dir/src/Accel.cpp.obj"
 
 # External object files for target Proyecto
 Proyecto_EXTERNAL_OBJECTS =
@@ -684,8 +684,8 @@ Proyecto.exe: CMakeFiles/Proyecto.dir/src/TimeUpdate.cpp.obj
 Proyecto.exe: CMakeFiles/Proyecto.dir/src/VarEqn.cpp.obj
 Proyecto.exe: CMakeFiles/Proyecto.dir/src/AccelHarmonic.cpp.obj
 Proyecto.exe: CMakeFiles/Proyecto.dir/src/G_AccelHarmonic.cpp.obj
-Proyecto.exe: CMakeFiles/Proyecto.dir/src/Elements.cpp.obj
 Proyecto.exe: CMakeFiles/Proyecto.dir/src/JPL_Eph_DE430.cpp.obj
+Proyecto.exe: CMakeFiles/Proyecto.dir/src/Accel.cpp.obj
 Proyecto.exe: CMakeFiles/Proyecto.dir/build.make
 Proyecto.exe: CMakeFiles/Proyecto.dir/linklibs.rsp
 Proyecto.exe: CMakeFiles/Proyecto.dir/objects1.rsp
