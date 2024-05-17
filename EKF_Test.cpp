@@ -583,7 +583,7 @@ int all_tests()
     _verify(AccelHarmonic_01);
     _verify(G_AccelHarmonic_01);
     _verify(VarEqn_01);
-    //_verify(JPL_Eph_DE430_01);
+    _verify(JPL_Eph_DE430_01);
 
     return 0;
 }
