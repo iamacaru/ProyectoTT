@@ -68,4 +68,6 @@ add_executable(Proyecto
         include/LTC.h
         src/LTC.cpp
         include/MeasUpdate.h
-        src/MeasUpdate.cpp)
+        src/MeasUpdate.cpp
+        include/DEInteg.h
+        src/DEInteg.cpp)

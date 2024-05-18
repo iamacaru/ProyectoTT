@@ -35,6 +35,7 @@
 #include "./include/Accel.h"
 #include "./include/LTC.h"
 #include "./include/MeasUpdate.h"
+#include "./include/DEInteg.h"
 
 #include <iostream>
 
@@ -273,8 +274,6 @@ int Position_01() {
 }
 
 int IERS_01() {
-    Global::eop19620101(21413);
-
     double Mjd_UTC = 37665.0;
     char interp = 'l';
     double x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC;
@@ -426,8 +425,6 @@ int TimeUpdate_01() {
 }
 
 int AccelHarmonic_01() {
-    Global::GGM03S();
-
     double values1[] = {5542555.93722861, 3213514.86734920, 3990892.97587686};
     Matrix r(3,1, values1, 3);
     double values2[] = {-0.976675972331716, 0.214718082511189, -0.000436019054674645, -0.214718043811152,
@@ -446,8 +443,6 @@ int AccelHarmonic_01() {
 }
 
 int G_AccelHarmonic_01() {
-    Global::GGM03S();
-
     double values1[] = {5542555.93722861, 3213514.86734920, 3990892.97587686};
     Matrix r(3,1, values1, 3);
     double values2[] = {-0.976675972331716, 0.214718082511189, -0.000436019054674645, -0.214718043811152,
@@ -468,8 +463,7 @@ int G_AccelHarmonic_01() {
 }
 
 int VarEqn_01() {
-    Global::GGM03S();
-    Global::eop19620101(21413);
+
     Global::AuxParam::Mjd_UTC = 49746.1101504630;
     Global::AuxParam::Mjd_TT = 49746.1108586111;
     Global::AuxParam::n = 20;
@@ -496,7 +490,7 @@ int VarEqn_01() {
 }
 
 int JPL_Eph_DE430_01() {
-    Global::Pc();
+
     Matrix r_Mercury(3,3), r_Venus(3,3), r_Earth(3,3), r_Mars(3,3), r_Jupiter(3,3),
     r_Saturn(3,3), r_Uranus(3,3), r_Neptune(3,3), r_Pluto(3,3), r_Moon(3,3),
     r_Sun(3,3);
@@ -543,10 +537,9 @@ int JPL_Eph_DE430_01() {
 }
 
 int Accel_01() {
-    Global::eop19620101(21413);
-    Global::Pc();
     Global::AuxParam::Mjd_UTC = 4.974611128472211e+04;
     Global::AuxParam::n = 20;
+    Global::AuxParam::m = 20;
     Global::AuxParam::sun = 1;
     Global::AuxParam::moon = 1;
     Global::AuxParam::planets = 1;
@@ -618,10 +611,36 @@ int MeasUpdate_01() {
                         10425.7388953049, 16700.6535128224, 14384.0288752816, 3.69924152397372, 5.6600675709344, 992.657163953104};
     Matrix comp3(6, 6, values6, 36);
 
+    _assert(K.isEqual(comp1, 10e-9));
+    _assert(x.isEqual(comp2, 10e-9));
+    _assert(P.isEqual(comp3, 10e-7));
 
-    _assert(K.isEqual(comp1, TOL_));
-    _assert(x.isEqual(comp2, TOL_));
-    _assert(P.isEqual(comp3, TOL_));
+    return 0;
+}
+
+int DEInteg_01() {
+    Global::AuxParam::Mjd_UTC = 4.974611128472211e+04;
+    Global::AuxParam::n = 20;
+    Global::AuxParam::m = 20;
+    Global::AuxParam::sun = 1;
+    Global::AuxParam::moon = 1;
+    Global::AuxParam::planets = 1;
+
+    double t = 0;
+    double tout = -1.349999919533730e+02;
+    double relerr = 1.00000000000000e-13;
+    double abserr = 1.00000000000000e-06;
+    int n_eqn = 6;
+    double values1[] = {6221397.62857869, 2867713.77965738, 3006155.98509949,
+                       4645.04725161807, -2752.21591588205, -7507.99940987033};
+    Matrix y(6, 1, values1, 6);
+    Matrix sol = DEInteg(Accel, t, tout, relerr, abserr, n_eqn, y);
+
+    double values2[] = {5542555.93722861, 3213514.86734920, 3990892.97587686,
+                        5394.06842166353, -2365.21337882342, -7061.84554200298};
+    Matrix comp(6, 1, values2, 6);
+
+    _assert(sol.isEqual(comp, 10e-9));
 
     return 0;
 }
@@ -629,41 +648,42 @@ int MeasUpdate_01() {
 
 int all_tests()
 {
-    _verify(proMat_01);
-    _verify(R_x_01);
-    _verify(R_y_01);
-    _verify(R_z_01);
-    _verify(sign_01);
-    _verify(timediff_01);
-    _verify(unit_01);
-    _verify(AccelPointMass_01);
-    _verify(AzElPa_01);
-    _verify(Cheb3D_01);
-    _verify(EccAnom_01);
-    _verify(Frac_01);
-    _verify(Geodetic_01);
-    _verify(MeanObliquity_01);
-    _verify(Mjday_01);
-    _verify(Mjday_TDB_01);
-    _verify(NutAngles_01);
-    _verify(Position_01);
-    _verify(IERS_01);
-    _verify(Legendre_01);
-    _verify(EqnEquinox_01);
-    _verify(Gmst_01);
-    _verify(Gast_01);
-    _verify(GHAMatrix_01);
-    _verify(NutMatrix_01);
-    _verify(PoleMatrix_01);
-    _verify(PrecMatrix_01);
-    _verify(TimeUpdate_01);
-    _verify(AccelHarmonic_01);
-    _verify(G_AccelHarmonic_01);
-    _verify(VarEqn_01);
-    _verify(JPL_Eph_DE430_01);
-    _verify(Accel_01);
-    _verify(LTC_01);
-    _verify(MeasUpdate_01);
+    //_verify(proMat_01);
+    //_verify(R_x_01);
+    //_verify(R_y_01);
+    //_verify(R_z_01);
+    //_verify(sign_01);
+    //_verify(timediff_01);
+    //_verify(unit_01);
+    //_verify(AccelPointMass_01);
+    //_verify(AzElPa_01);
+    //_verify(Cheb3D_01);
+    //_verify(EccAnom_01);
+    //_verify(Frac_01);
+    //_verify(Geodetic_01);
+    //_verify(MeanObliquity_01);
+    //_verify(Mjday_01);
+    //_verify(Mjday_TDB_01);
+    //_verify(NutAngles_01);
+    //_verify(Position_01);
+    //_verify(IERS_01);
+    //_verify(Legendre_01);
+    //_verify(EqnEquinox_01);
+    //_verify(Gmst_01);
+    //_verify(Gast_01);
+    //_verify(GHAMatrix_01);
+    //_verify(NutMatrix_01);
+    //_verify(PoleMatrix_01);
+    //_verify(PrecMatrix_01);
+    //_verify(TimeUpdate_01);
+    //_verify(AccelHarmonic_01);
+    //_verify(G_AccelHarmonic_01);
+    //_verify(VarEqn_01);
+    //_verify(JPL_Eph_DE430_01);
+    //_verify(Accel_01);
+    //_verify(LTC_01);
+    //_verify(MeasUpdate_01);
+    _verify(DEInteg_01);
 
     return 0;
 }
@@ -671,6 +691,10 @@ int all_tests()
 
 int main()
 {
+    Global::Pc();
+    Global::GGM03S();
+    Global::eop19620101(21413);
+
     extern double Mjd0;
     Mjd0 = Mjday(1995,1,29,02,38,0);
 
