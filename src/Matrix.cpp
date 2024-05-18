@@ -110,6 +110,16 @@ Matrix operator*(double scalar, const Matrix& matrix) {
     return result;
 }
 
+Matrix operator*(const Matrix& matrix, double scalar) {
+    Matrix result(matrix.rows(), matrix.columns());
+    for (int i = 0; i < matrix.rows(); i++) {
+        for (int j = 0; j < matrix.columns(); j++) {
+            result(i + 1, j + 1) = scalar * matrix(i + 1, j + 1);
+        }
+    }
+    return result;
+}
+
 Matrix operator/(const Matrix& matrix, double scalar) {
     if (scalar == 0.0) {
         throw std::invalid_argument("Division by zero is not allowed.");
@@ -220,6 +230,61 @@ Matrix Matrix::traspuesta() const {
     return {col, fil, values, col * fil};
 }
 
+Matrix Matrix::inversa() const {
+    int n = fil;
+    Matrix A(*this);
+    Matrix I = Matrix::identidad(n);
+
+    // Gaussian elimination
+    for (int i = 1; i <= n; i++) {
+        // Search for maximum in this column
+        double maxEl = std::abs(A(i, i));
+        int maxRow = i;
+        for (int k = i + 1; k <= n; k++) {
+            if (std::abs(A(k, i)) > maxEl) {
+                maxEl = std::abs(A(k, i));
+                maxRow = k;
+            }
+        }
+
+        // Swap maximum row with current row (pivot)
+        for (int k = 1; k <= n; k++) {
+            std::swap(A(maxRow, k), A(i, k));
+            std::swap(I(maxRow, k), I(i, k));
+        }
+
+        // Make all rows below this one 0 in the current column
+        for (int k = i + 1; k <= n; k++) {
+            double c = -A(k, i) / A(i, i);
+            for (int j = 1; j <= n; j++) {
+                if (i == j) {
+                    A(k, j) = 0;
+                } else {
+                    A(k, j) += c * A(i, j);
+                }
+                I(k, j) += c * I(i, j);
+            }
+        }
+    }
+
+    // Solve equation Ax = I for an upper triangular matrix A
+    for (int i = n; i >= 1; i--) {
+        for (int j = 1; j <= n; j++) {
+            I(i, j) /= A(i, i);
+        }
+        for (int k = i - 1; k >= 1; k--) {
+            double c = -A(k, i);
+            for (int j = 1; j <= n; j++) {
+                I(k, j) += c * I(i, j);
+            }
+        }
+    }
+
+    return I;
+}
+
+
+
 Matrix Matrix::subMatrix(int f, int l, int i) const{
     Matrix r(1, l - f + 1);
 
@@ -260,4 +325,14 @@ bool Matrix::isEqual(const Matrix& matrix2, double TOL_) const {
     }
 
     return true;
+}
+
+Matrix Matrix::identidad(int size) {
+    Matrix result(size, size);
+    for (int i = 1; i <= size; ++i) {
+        for (int j = 1; j <= size; ++j) {
+            result(i, j) = (i == j) ? 1.0 : 0.0;
+        }
+    }
+    return result;
 }

@@ -31,8 +31,10 @@
 #include "./include/VarEqn.h"
 #include "./include/AccelHarmonic.h"
 #include "./include/G_AccelHarmonic.h"
-#include "./include/VarEqn.h"
 #include "./include/JPL_Eph_DE430.h"
+#include "./include/Accel.h"
+#include "./include/LTC.h"
+#include "./include/MeasUpdate.h"
 
 #include <iostream>
 
@@ -63,39 +65,42 @@ int proMat_01()
 
 int R_x_01() {
     double alpha = 1.0;
-    Matrix sol(3,3);
+    Matrix sol = R_x(alpha);
 
-    sol = R_x(alpha);
+    double values[] = {1, 0, 0,
+                       0, 0.54030230586814, 0.841470984807897,
+                       0, -0.841470984807897, 0.54030230586814};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 1) < TOL_ && fabs(sol(1,2) - 0) < TOL_ && fabs(sol(1,3) - 0 ) < TOL_ &&
-            fabs(sol(2,1) - 0) < TOL_ && fabs(sol(2,2) - 0.540302305868140) < TOL_ && fabs(sol(2,3) - 0.841470984807897) < TOL_ &&
-            fabs(sol(3,1) - 0) < TOL_ && fabs(sol(3,2) - -0.841470984807897) < TOL_ && fabs(sol(3,3) - 0.540302305868140) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int R_y_01() {
     double alpha = 1.0;
-    Matrix sol(3,3);
+    Matrix sol = R_y(alpha);
 
-    sol = R_y(alpha);
+    double values[] = {0.54030230586814, 0, -0.841470984807897,
+                       0, 1, 0,
+                       0.841470984807897, 0, 0.54030230586814};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 0.540302305868140) < TOL_ && fabs(sol(1,2) - 0) < TOL_ && fabs(sol(1,3) - -0.841470984807897) < TOL_ &&
-            fabs(sol(2,1) - 0) < TOL_ && fabs(sol(2,2) - 1) < TOL_ && fabs(sol(2,3) - 0) < TOL_ &&
-            fabs(sol(3,1) - 0.841470984807897) < TOL_ && fabs(sol(3,2) - 0) < TOL_ && fabs(sol(3,3) - 0.540302305868140) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int R_z_01() {
     double alpha = 1.0;
-    Matrix sol(3,3);
+    Matrix sol = R_z(alpha);
 
-    sol = R_z(alpha);
+    double values[] = {0.54030230586814, 0.841470984807897, 0,
+                       -0.841470984807897, 0.54030230586814,
+                       0, 0, 0, 1};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 0.540302305868140) < TOL_ && fabs(sol(1,2) - 0.841470984807897) < TOL_ && fabs(sol(1,3) - 0) < TOL_ &&
-            fabs(sol(2,1) - -0.841470984807897) < TOL_ && fabs(sol(2,2) - 0.540302305868140) < TOL_ && fabs(sol(2,3) - 0) < TOL_ &&
-            fabs(sol(3,1) - 0) < TOL_ && fabs(sol(3,2) - 0) < TOL_ && fabs(sol(3,3) - 1) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -110,83 +115,82 @@ int sign_01() {
 }
 
 int timediff_01() {
-    Matrix sol = timediff(3, 9);
+    double UT1_UTC = 3;
+    double TAI_UTC = 9;
+    Matrix sol = timediff(UT1_UTC, TAI_UTC);
 
-    _assert(fabs(sol(1,1) - -6) < TOL_);
-    _assert(fabs(sol(1,2) - 10) < TOL_);
-    _assert(fabs(sol(1,3) - 13) < TOL_);
-    _assert(fabs(sol(1,4) - 41.1840) < TOL_);
-    _assert(fabs(sol(1,5) - -10) < TOL_);
+    double values[] = {-6, 10, 13,  41.184, -10};
+    Matrix comp(1, 5, values, 5);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int unit_01() {
-    double values[] = {3.0, 4.0, 0.0};
-    Matrix sol = unit(Matrix(1, 3, values, 3));
+    double values1[] = {3.0, 4.0, 0.0};
+    Matrix vec(1, 3, values1, 3);
+    Matrix sol = unit(vec);
 
-    _assert(fabs(sol(1,1) - 0.6) < TOL_);
-    _assert(fabs(sol(1,2) - 0.8) < TOL_);
-    _assert(fabs(sol(1,3) - 0.0) < TOL_);
+    double values2[] = {0.6, 0.8, 0.0};
+    Matrix comp(1, 3, values2, 3);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int AccelPointMass_01() {
-
-    double valuesr[] = {5.0, 10.0, 15.0};
-    Matrix r(1, 3, valuesr, 3);
-
-    double valuess[] = {25.0, 30.0, 35.0};
-    Matrix s(1, 3, valuess, 3);
-
+    double values1[] = {5.0, 10.0, 15.0};
+    Matrix r(1, 3, values1, 3);
+    double values2[] = {25.0, 30.0, 35.0};
+    Matrix s(1, 3, values2, 3);
     double GM = 500;
-
     Matrix sol = AccelPointMass(r, s, GM);
 
-    _assert(fabs(sol(1,1) - 0.153884194958199) < TOL_);
-    _assert(fabs(sol(1,2) - 0.136548511517370) < TOL_);
-    _assert(fabs(sol(1,3) - 0.119212828076542) < TOL_);
+    double values3[] = {0.153884194958199, 0.136548511517370, 0.119212828076542};
+    Matrix comp(1, 3, values3, 3);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int AzElPa_01() {
-
     double values[] = {5.0, 10.0, 15.0};
     Matrix s(1, 3, values, 3);
-
     double Az;
     double El;
     Matrix dAds(1,3);
     Matrix dEds(1,3);
     AzElPa(s, Az, El, dAds, dEds);
+
+    double values1[] = {0.08, -0.04, 0.0};
+    Matrix comp1(1, 3, values1, 3);
+    double values2[] = {-0.019166296949998, -0.038332593899996, 0.031943828249997};
+    Matrix comp2(1, 3, values2, 3);
+
     _assert(fabs(Az - 0.463647609000806) < TOL_);
     _assert(fabs(El - 0.930274014115472) < TOL_);
-    _assert(fabs(dAds(1,1) - 0.08) < TOL_);
-    _assert(fabs(dAds(1,2) - -0.04) < TOL_);
-    _assert(fabs(dAds(1,3) - 0.0) < TOL_);
-    _assert(fabs(dEds(1,1) - -0.019166296949998) < TOL_);
-    _assert(fabs(dEds(1,2) - -0.038332593899996) < TOL_);
-    _assert(fabs(dEds(1,3) - 0.031943828249997) < TOL_);
+    _assert(dAds.isEqual(comp1, TOL_));
+    _assert(dEds.isEqual(comp2, TOL_));
 
     return 0;
 }
 
 int Cheb3D_01() {
-
-    double values1[3] = {1.0,2.0,3.0};
+    double values1[] = {1.0, 2.0, 3.0};
     Matrix Cx(1,3, values1, 3);
-    double values2[3] = {4.0,5.0,6.0};
+    double values2[] = {4.0, 5.0, 6.0};
     Matrix Cy(1,3, values2, 3);
-    double values3[3] = {7.0,8.0,9.0};
+    double values3[] = {7.0, 8.0, 9.0};
     Matrix Cz(1,3, values3, 3);
+    Matrix sol = Cheb3D(5.0, 2.0, 4.0, 6.0, Cx, Cy, Cz);
 
-    Matrix sol(1,3);
-    sol = Cheb3D(5.0, 2.0, 4.0, 6.0, Cx, Cy, Cz);
-    _assert(fabs(sol(1,1) - 1.0) < TOL_);
-    _assert(fabs(sol(1,2) - 4.0) < TOL_);
-    _assert(fabs(sol(1,3) - 7.0) < TOL_);
+    double values4[] = {1.0, 4.0, 7.0};
+    Matrix comp(1, 3, values4, 3);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -209,14 +213,14 @@ int Frac_01() {
 }
 
 int Geodetic_01() {
-    double values[] = {1, 2, 3};
-    Matrix r(1,3,values,3);
-
+    double values1[] = {1, 2, 3};
+    Matrix r(1,3,values1,3);
     Matrix sol = Geodetic(r);
 
-    _assert(fabs(sol(1,1) - 1.107148717794090) < TOL_);
-    _assert(fabs(sol(1,2) - 1.570744136243924) < TOL_);
-    _assert(fabs(sol(1,3) - -6.356748616533795e+06) < TOL_);
+    double values2[] = {1.107148717794090, 1.570744136243924, -6.356748616533795e+06};
+    Matrix comp(1, 3, values2, 3);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -247,10 +251,13 @@ int Mjday_TDB_01() {
 }
 
 int NutAngles_01() {
-    Matrix sol = NutAngles(55555.0);
+    double Mjd_TT = 55555.0;
+    Matrix sol = NutAngles(Mjd_TT);
 
-    _assert(fabs(sol(1,1) - 8.481779033666464e-05) < TOL_);
-    _assert(fabs(sol(1,2) - -7.785278092977075e-08) < TOL_);
+    double values[] = {8.481779033666464e-05, -7.785278092977075e-08};
+    Matrix comp(1, 2, values, 2);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -267,11 +274,10 @@ int Position_01() {
 
 int IERS_01() {
     Global::eop19620101(21413);
+
     double Mjd_UTC = 37665.0;
     char interp = 'l';
-
     double x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC;
-
     IERS(*Global::eopdata, Mjd_UTC, interp, x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC);
 
     _assert(fabs(x_pole - -6.157133750091107e-08) < TOL_);
@@ -291,36 +297,21 @@ int Legendre_01() {
     int n = 2;
     int m = 3;
     double fi = Constants::pi/4;
+    Matrix pnm(n+1, m+1);
+    Matrix dpnm(n+1, m+1);
+    Legendre(n, m, fi, pnm, dpnm);
 
-    Matrix pnm(n+1,m+1);
-    Matrix dpnm(n+1,m+1);
-    Legendre(n,m,fi,pnm,dpnm);
+    double values1[] = {1.0, 0.0, 0.0, 0.0,
+                        1.224744871391589, 1.224744871391589, 0.0, 0.0,
+                        0.559016994374947, 1.936491673103709, 0.968245836551854, 0.0};
+    Matrix comp1(3, 4, values1, 12);
+    double values2[] = {0, 0, 0, 0,
+                        1.224744871391589, -1.224744871391589, 0, 0,
+                        3.354101966249685, 0.000000000000001, -1.936491673103709, 0};
+    Matrix comp2(3, 4, values2, 12);
 
-    _assert(fabs(pnm(1,1) - 1.0) < TOL_);
-    _assert(fabs(pnm(1,2) - 0) < TOL_);
-    _assert(fabs(pnm(1,3) - 0) < TOL_);
-    _assert(fabs(pnm(1,4) - 0) < TOL_);
-    _assert(fabs(pnm(2,1) - 1.224744871391589) < TOL_);
-    _assert(fabs(pnm(2,2) - 1.224744871391589) < TOL_);
-    _assert(fabs(pnm(2,3) - 0) < TOL_);
-    _assert(fabs(pnm(2,4) - 0) < TOL_);
-    _assert(fabs(pnm(3,1) - 0.559016994374947) < TOL_);
-    _assert(fabs(pnm(3,2) - 1.936491673103709) < TOL_);
-    _assert(fabs(pnm(3,3) - 0.968245836551854) < TOL_);
-    _assert(fabs(pnm(3,4) - 0) < TOL_);
-
-    _assert(fabs(dpnm(1,1) - 0) < TOL_);
-    _assert(fabs(dpnm(1,2) - 0) < TOL_);
-    _assert(fabs(dpnm(1,3) - 0) < TOL_);
-    _assert(fabs(dpnm(1,4) - 0) < TOL_);
-    _assert(fabs(dpnm(2,1) - 1.224744871391589) < TOL_);
-    _assert(fabs(dpnm(2,2) - -1.224744871391589) < TOL_);
-    _assert(fabs(dpnm(2,3) - 0) < TOL_);
-    _assert(fabs(dpnm(2,4) - 0) < TOL_);
-    _assert(fabs(dpnm(3,1) - 3.354101966249685) < TOL_);
-    _assert(fabs(dpnm(3,2) - 0.000000000000001) < TOL_);
-    _assert(fabs(dpnm(3,3) - -1.936491673103709) < TOL_);
-    _assert(fabs(dpnm(3,4) - 0) < TOL_);
+    _assert(pnm.isEqual(comp1, TOL_));
+    _assert(dpnm.isEqual(comp2, TOL_));
 
     return 0;
 }
@@ -353,49 +344,59 @@ int Gast_01() {
 }
 
 int GHAMatrix_01() {
-    Matrix sol(3,3);
+    double Mjd_UT1 = 241575.6;
+    Matrix sol = GHAMatrix(Mjd_UT1);
 
-    sol = GHAMatrix(241575.6);
+    double values[] {0.498164074615664, 0.867082784261295, 0,
+                     -0.867082784261295, 0.498164074615664, 0,
+                     0, 0, 1};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 0.498164074615664) < TOL_ && fabs(sol(1,2) - 0.867082784261295) < TOL_ && fabs(sol(1,3) - 0) < TOL_ &&
-            fabs(sol(2,1) - -0.867082784261295 ) < TOL_ && fabs(sol(2,2) - 0.498164074615664) < TOL_ && fabs(sol(2,3) - 0) < TOL_ &&
-            fabs(sol(3,1) - 0) < TOL_ && fabs(sol(3,2) - 0) < TOL_ && fabs(sol(3,3) - 1) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int NutMatrix_01() {
-    Matrix sol(3,3);
+    double Mjd_TT = 2524686.6;
+    Matrix sol = NutMatrix(Mjd_TT);
 
-    sol = NutMatrix(2524686.6);
+    double values[] {0.999999998843278, -4.43678484217162e-05, -1.85725364151702e-05,
+                     4.43685056896323e-05, 0.99999999838948, 3.53903222812257e-05,
+                     1.85709661928042e-05, -3.5391146275876e-05, 0.999999999201293};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 0.999999998843278) < TOL_ && fabs(sol(1,2) - -4.43678484217162e-05) < TOL_ && fabs(sol(1,3) - -1.85725364151702e-05) < TOL_ &&
-            fabs(sol(2,1) - 4.43685056896323e-05) < TOL_ && fabs(sol(2,2) - 0.99999999838948) < TOL_ && fabs(sol(2,3) - 3.53903222812257e-05) < TOL_ &&
-            fabs(sol(3,1) - 1.85709661928042e-05) < TOL_ && fabs(sol(3,2) - -3.5391146275876e-05) < TOL_ && fabs(sol(3,3) - 0.999999999201293) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int PoleMatrix_01() {
-    Matrix sol(3,3);
+    double xp = 15.4;
+    double yp = 6.8;
+    Matrix sol = PoleMatrix(xp, yp);
 
-    sol = PoleMatrix(15.4, 6.8);
+    double values[] {-0.95295291688718, 0.149774827043247, .263530338633677,
+                     0, 0.869397490349825, -0.494113351138608,
+                     -0.303118356745702, -0.470866759240436, -0.82849487436326};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - -0.95295291688718) < TOL_ && fabs(sol(1,2) - 0.149774827043247) < TOL_ && fabs(sol(1,3) - 0.263530338633677) < TOL_ &&
-            fabs(sol(2,1) - 0) < TOL_ && fabs(sol(2,2) - 0.869397490349825) < TOL_ && fabs(sol(2,3) - -0.494113351138608) < TOL_ &&
-            fabs(sol(3,1) - -0.303118356745702 ) < TOL_ && fabs(sol(3,2) - -0.470866759240436) < TOL_ && fabs(sol(3,3) - -0.82849487436326) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
 
 int PrecMatrix_01() {
-    Matrix sol(3,3);
+    double Mjd_1 = 2358142.6;
+    double Mjd_2 = 2386475.2;
+    Matrix sol = PrecMatrix(Mjd_1, Mjd_2);
 
-    sol = PrecMatrix(2358142.6, 2386475.2);
+    double values[] {0.999810970866054, -0.0180081535228055, -0.0073300029043494,
+                     0.0180081534586217, 0.999837837877244, -6.60149034239962e-05,
+                     0.00733000306203428, -6.59973924696928e-05, 0.999973132988809};
+    Matrix comp(3, 3, values, 9);
 
-    _assert(fabs(sol(1,1) - 0.999810970866054) < TOL_ && fabs(sol(1,2) - -0.0180081535228055) < TOL_ && fabs(sol(1,3) - -0.0073300029043494) < TOL_ &&
-            fabs(sol(2,1) - 0.0180081534586217) < TOL_ && fabs(sol(2,2) - 0.999837837877244) < TOL_ && fabs(sol(2,3) - -6.60149034239962e-05) < TOL_ &&
-            fabs(sol(3,1) - 0.00733000306203428) < TOL_ && fabs(sol(3,2) - -6.59973924696928e-05) < TOL_ && fabs(sol(3,3) - 0.999973132988809) < TOL_);
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -405,18 +406,21 @@ int TimeUpdate_01() {
     Matrix P(3,3, values1, 9);
     double values2[] = {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0};
     Matrix Phi(3,3, values2, 9);
+    double Qdt = 40;
+    Matrix sol1= TimeUpdate(P, Phi, Qdt);
+    Matrix sol2 = TimeUpdate(P, Phi);
 
-    Matrix sol1(3,3);
-    sol1 = TimeUpdate(P, Phi, 40);
-    Matrix sol2(3,3);
-    sol2 = TimeUpdate(P, Phi);
-    _assert(fabs(sol1(1,1) - 2728) < TOL_ && fabs(sol1(1,2) - 1702) < TOL_ && fabs(sol1(1,3) - 676) < TOL_ &&
-            fabs(sol1(2,1) - 1666) < TOL_ && fabs(sol1(2,2) - 1045) < TOL_ && fabs(sol1(2,3) - 424) < TOL_ &&
-            fabs(sol1(3,1) - 604) < TOL_ && fabs(sol1(3,2) - 388) < TOL_ && fabs(sol1(3,3) - 172) < TOL_);
+    double values3[] = {2728, 1702, 676,
+                      1666, 1045, 424,
+                      604, 388, 172};
+    Matrix comp1(3, 3, values3, 9);
+    double values4[] = {2688, 1662, 636,
+                        1626, 1005, 384,
+                        564, 348, 132};
+    Matrix comp2(3, 3, values4, 9);
 
-    _assert(fabs(sol2(1,1) - 2688) < TOL_ && fabs(sol2(1,2) - 1662) < TOL_ && fabs(sol2(1,3) - 636) < TOL_ &&
-            fabs(sol2(2,1) - 1626) < TOL_ && fabs(sol2(2,2) - 1005) < TOL_ && fabs(sol2(2,3) - 384) < TOL_ &&
-            fabs(sol2(3,1) - 564) < TOL_ && fabs(sol2(3,2) - 348) < TOL_ && fabs(sol2(3,3) - 132) < TOL_);
+    _assert(sol1.isEqual(comp1, TOL_));
+    _assert(sol2.isEqual(comp2, TOL_));
 
     return 0;
 }
@@ -431,12 +435,12 @@ int AccelHarmonic_01() {
     Matrix E(3,3, values2, 9);
     int n_max = 20;
     int m_max = 20;
-
     Matrix sol = AccelHarmonic(r, E, n_max, m_max);
 
-    _assert(fabs(sol(1,1) - -5.13483678540849) < TOL_);
-    _assert(fabs(sol(2,1) - -2.97717622353621) < TOL_);
-    _assert(fabs(sol(3,1) - -3.70591776714203) < TOL_);
+    double values3[] = {-5.13483678540849, -2.97717622353621, -3.70591776714203};
+    Matrix comp(3, 1, values3, 9);
+
+    _assert(sol.isEqual(comp, TOL_));
 
     return 0;
 }
@@ -451,22 +455,14 @@ int G_AccelHarmonic_01() {
     Matrix U(3,3, values2, 9);
     int n_max = 20;
     int m_max = 20;
-
     Matrix sol = G_AccelHarmonic(r, U, n_max, m_max);
 
     double values3[] = {0.057003203757233 * 1.0e-05, 0.086765159323932 * 1.0e-05, 0.108169353563170 * 1.0e-05,
                         0.086765159412749*1.0e-05,  -0.042335910688251*1.0e-05,   0.062718370319459*1.0e-05,
                         0.108169354007259 * 1.0e-05, 0.062718370319459 * 1.0e-05, -0.014667292891346 * 1.0e-05};
-
     Matrix comp(3,3,values3,9);
 
-    _assert(fabs(sol(1,1) - 5.7003203313144e-07) < TOL_ && fabs(sol(1,2) - 8.67651595015673e-07) < TOL_ && fabs(sol(1,3) - 1.0816935356317e-06) < TOL_ &&
-            fabs(sol(2,1) - 8.6765159101887e-07) < TOL_ && fabs(sol(2,2) - -4.23359105550247e-07) < TOL_ && fabs(sol(2,3) - 6.27183703194589e-07) < TOL_ &&
-            fabs(sol(3,1) - 1.08169353651988e-06) < TOL_ && fabs(sol(3,2) - 6.27183704526857e-07) < TOL_ && fabs(sol(3,3) - -1.46672928913461e-07) < TOL_);
-
     _assert(sol.isEqual(comp, TOL_));
-
-    // EN MATLAB G_AccelHarmonic([5542555.93722861; 3213514.86734920; 3990892.97587686],[-0.976675972331716, 0.214718082511189, -0.000436019054674645; -0.214718043811152, -0.976676068937815, -0.000134261271504216; -0.000454677699074514, -3.75085994087200e-05, 0.999999895930642],20,20)
 
     return 0;
 }
@@ -479,14 +475,12 @@ int VarEqn_01() {
     Global::AuxParam::n = 20;
     Global::AuxParam::m = 20;
 
+    double x = 0.0;
     double values1[] = {5542555.93722861, 3213514.8673492, 3990892.97587685, 5394.06842166351, -2365.21337882342,
                          -7061.84554200295, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
                          0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
                          1, 0, 0, 0, 0, 0, 0, 1};
-
-
     Matrix yPhi(42,1, values1, 42);
-    double x = 0.0;
 
     Matrix sol = VarEqn(x, yPhi);
 
@@ -494,7 +488,6 @@ int VarEqn_01() {
                         0, 0, 0, 5.70032035795975e-07, 8.67651593239316e-07, 1.08169354007259e-06, 0, 0, 0, 8.67651590574781e-07,
                         -4.23359106882515e-07, 6.27183702306411e-07, 0, 0, 0, 1.08169353651988e-06, 6.27183704082768e-07,
                         -1.46672928913461e-07, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0};
-
     Matrix comp(42, 1, values2, 42);
 
     _assert(sol.isEqual(comp, TOL_));
@@ -505,46 +498,130 @@ int VarEqn_01() {
 int JPL_Eph_DE430_01() {
     Global::Pc();
     Matrix r_Mercury(3,3), r_Venus(3,3), r_Earth(3,3), r_Mars(3,3), r_Jupiter(3,3),
-    r_Saturn(3,3), r_Uranus(3,3), r_Neptune(3,3), r_Pluto(3,3), r_Moon(3,3), r_Sun(3,3);
+    r_Saturn(3,3), r_Uranus(3,3), r_Neptune(3,3), r_Pluto(3,3), r_Moon(3,3),
+    r_Sun(3,3);
     double Mjd_TDB = 4.974611199287850e+04;
-
     JPL_Eph_DE430(r_Mercury, r_Venus, r_Earth, r_Mars, r_Jupiter, r_Saturn, r_Uranus, r_Neptune,
                   r_Pluto, r_Moon, r_Sun, Mjd_TDB);
 
-    r_Mercury.print();
-    r_Venus.print();
-    r_Earth.print();
-    r_Mars.print();
-    r_Jupiter.print();
-    r_Saturn.print();
-    r_Uranus.print();
-    r_Neptune.print();
-    r_Pluto.print();
-    r_Moon.print();
-    r_Sun.print();
+    double values1[] = {83775495895.6957, -65291124913.4462, -23391312101.2408};
+    Matrix comp1(3, 1, values1, 3);
+    double values2[] = {-15229665573.9533, -110134992637.563, -41021803625.6266};
+    Matrix comp2(3, 1, values2, 3);
+    double values3[] = {-92470961229.1923, 106394918389.493, 46130139909.4037};
+    Matrix comp3(3, 1, values3, 3);
+    double values4[] = {-88278413008.2432, 46964769778.2984, 29071026502.6713};
+    Matrix comp4(3, 1, values4, 3);
+    double values5[] = {-298385936466.094, -754498258910.729, -314410518568.228};
+    Matrix comp5(3, 1, values5, 3);
+    double values6[] = {1482033999505.12, -453872894236.397, -249402247811.211};
+    Matrix comp6(3, 1, values6, 3);
+    double values7[] = {1412367984017.93, -2511355045786.9, -1118108651902.6};
+    Matrix comp7(3, 1, values7, 3);
+    double values8[] = {1871250770052.33, -3928976313605.4, -1655020476718.54};
+    Matrix comp8(3, 1, values8, 3);
+    double values9[] = {-2171414794259.54, -3915433128334.98, -552716250355.845};
+    Matrix comp9(3, 1, values9, 3);
+    double values10[] = {89383372.3127192, -336603832.117946, -114648787.751995};
+    Matrix comp10(3, 1, values10, 3);
+    double values11[] = {92298251728.4766, -105375196079.054, -45686367226.3533};
+    Matrix comp11(3, 1, values11, 3);
 
-    cout << r_Mercury(1,1) - 8.377549589569574*1.0e+10 << endl;
-    cout << r_Mercury(2,1) - -6.529112491344618*1.0e+10 << endl;
-    cout << r_Mercury(3,1) - -2.339131210124083*1.0e+10 << endl;
-    cout << r_Mercury(1,1) - 83775495895.6957 << endl;
-    cout << r_Mercury(2,1) - -65291124913.4462 << endl;
-    cout << r_Mercury(3,1) - -23391312101.2408 << endl;
-    cout << r_Venus(1,1) - -0.152296655739533*1.0e+11 << endl;
-    cout << r_Venus(2,1) - -1.101349926375630*1.0e+11 << endl;
-    cout << r_Venus(3,1) - -0.410218036256266*1.0e+11 << endl;
+    _assert(r_Mercury.isEqual(comp1, 10e-4));
+    _assert(r_Venus.isEqual(comp2, 10e-4));
+    _assert(r_Earth.isEqual(comp3, 10e-4));
+    _assert(r_Mars.isEqual(comp4, 10e-4));
+    _assert(r_Jupiter.isEqual(comp5, 10e-4));
+    _assert(r_Saturn.isEqual(comp6, 10e-3));
+    _assert(r_Uranus.isEqual(comp7, 10e-3));
+    _assert(r_Neptune.isEqual(comp8, 10e-3));
+    _assert(r_Pluto.isEqual(comp9, 10e-3));
+    _assert(r_Moon.isEqual(comp10, 10e-5));
+    _assert(r_Sun.isEqual(comp11, 10e-4));
+
+    return 0;
+}
+
+int Accel_01() {
+    Global::eop19620101(21413);
+    Global::Pc();
+    Global::AuxParam::Mjd_UTC = 4.974611128472211e+04;
+    Global::AuxParam::n = 20;
+    Global::AuxParam::sun = 1;
+    Global::AuxParam::moon = 1;
+    Global::AuxParam::planets = 1;
+
+    double x = 0.0;
+    double values1[] = {6221397.62857869, 2867713.77965738, 3006155.98509949,
+                        4645.04725161807,-2752.21591588205, -7507.99940987033};
+    Matrix Y(6,1, values1, 6);
+    Matrix sol = Accel(x, Y);
+
+    double values2[] = {4645.04725161807, -2752.21591588205, -7507.99940987033,
+                        -5.92414951314006, -2.73076669788113, -2.86933570556259};
+    Matrix comp(6, 1, values2, 6);
+
+    _assert(sol.isEqual(comp, TOL_));
+
+    return 0;
+}
+
+int LTC_01() {
+    double lon = -2.76234307910694;
+    double lat = 0.376551295459273;
+    Matrix sol = LTC(lon, lat);
+
+    double values[] = {0.370223471399199, -0.928942722252092, 0,
+                       0.341586711932422, 0.136136938528208, 0.929938305587722,
+                       -0.863859421119156, -0.344284987681776, 0.367715580035218};
+    Matrix comp(3, 3, values, 9);
+
+    _assert(sol.isEqual(comp, TOL_));
+
+    return 0;
+}
+
+int MeasUpdate_01() {
+    double values1[] = {5738566.5776918, 3123975.34092958, 3727114.48156063,
+                        5199.63329181126, -2474.43881044665, -7195.16752553894};
+    Matrix x(6, 1, values1, 6);
+    Matrix z(1, 1);
+    z(1, 1) = 1.0559084894933;
+    Matrix g(1, 1);
+    g(1, 1) = 1.05892995381513;
+    Matrix s(1, 1);
+    s(1, 1) = 0.00039095375244673;
+    double values2[] = {9.59123748602943e-08, 2.16050345227544e-07, -3.27382770920699e-07, 0, 0, 0};
+    Matrix G(1, 6, values2, 6);
+    double values3[] = {101453348.207917, 120429.109355752, 148186.145010685, 39372.9209771494, 3284.21674871861, 4014.15727499737,
+                        120429.109355752, 101309543.076737, 84141.6477319108, 3284.34773346912, 35369.9224485894, 2255.66799443683,
+                        148186.145010685, 84141.6477319108, 101344434.103716, 4014.41933457261, 2255.72532464628, 36274.7873567659,
+                        39372.9209771494, 3284.34773346912, 4014.41933457261, 1001.21615369033, 1.32096249010467, 1.60455480925268,
+                        3284.21674871861, 35369.9224485894, 2255.72532464628, 1.32096249010467, 999.576829597177, 0.892927374761907,
+                        4014.15727499737, 2255.66799443683, 36274.7873567659, 1.60455480925268, 0.892927374761907, 999.924178045209};
+    Matrix P(6, 6, values3, 36);
+    int n = 6;
+    Matrix K(6, 1);
+    MeasUpdate(x, z, g, s, G, P, n, K);
+
+    double values4[] = {582691.206462721, 1312775.30841773, -1989454.89979559,
+                        190.367307357728, 433.242659422225, -660.433799251448};
+    Matrix comp1(6, 1, values4, 6);
+    double values5[] = {5736805.99700083, 3120008.83717262, 3733125.54856025,
+                        5199.05810378403, -2475.74783768479, -7193.17204837758};
+    Matrix comp2(6, 1, values5, 6);
+    double values6[] = {95796502.307684, -12624173.0727019, 19462086.3185293, 37524.809129534, -921.76222363725, 10425.7388953049,
+                        -12624173.0727019, 72596566.3325406, 43597431.3212774, -879.359516331218, 25894.0537871216, 16700.6535128224,
+                        19462086.3185293, 43597431.3212774, 35401902.436512, 10324.3398033036, 16615.9994838993, 14384.0288752816,
+                        37524.809129534, -879.359516331219, 10324.3398033036, 1000.61236892024, -0.053145927681848, 3.69924152397372,
+                        -921.76222363725, 25894.0537871216, 16615.9994838993, -0.0531459276818478, 996.449599436078, 5.6600675709344,
+                        10425.7388953049, 16700.6535128224, 14384.0288752816, 3.69924152397372, 5.6600675709344, 992.657163953104};
+    Matrix comp3(6, 6, values6, 36);
 
 
-    _assert(fabs(r_Mercury(1,1) - 8.377549589569574*1.0e+10) < TOL_ && fabs(r_Mercury(2,1) - -6.529112491344618*1.0e+10) < TOL_ && fabs(r_Mercury(3,1) - -2.339131210124083*1.0e+10) < TOL_);
-    _assert(fabs(r_Venus(1,1) - -0.152296655739533*1.0e+11) < TOL_ && fabs(r_Venus(2,1) - -1.101349926375630*1.0e+11) < TOL_ && fabs(r_Venus(3,1) - -0.410218036256266*1.0e+11) < TOL_);
-    _assert(fabs(r_Earth(1,1) - -0.924709612291923*1.0e+11) < TOL_ && fabs(r_Earth(2,1) - 1.063949183894933*1.0e+11) < TOL_ && fabs(r_Earth(3,1) - 0.461301399094037*1.0e+11) < TOL_);
-    _assert(fabs(r_Mars(1,1) - -8.827841300824323*1.0e+10) < TOL_ && fabs(r_Mars(2,1) - 4.696476977829840*1.0e+10) < TOL_ && fabs(r_Mars(3,1) - 2.907102650267133*1.0e+10) < TOL_);
-    _assert(fabs(r_Jupiter(1,1) - -2.983859364660936*1.0e+11) < TOL_ && fabs(r_Jupiter(2,1) - -7.544982589107291*1.0e+11) < TOL_ && fabs(r_Jupiter(3,1) - -3.144105185682280*1.0e+11) < TOL_);
-    _assert(fabs(r_Saturn(1,1) - 1.482033999505117*1.0e+12) < TOL_ && fabs(r_Saturn(2,1) - -0.453872894236397*1.0e+12) < TOL_ && fabs(r_Saturn(3,1) - -0.249402247811211*1.0e+12) < TOL_);
-    _assert(fabs(r_Uranus(1,1) - 1.412367984017928*1.0e+12) < TOL_ && fabs(r_Uranus(2,1) - -2.511355045786904*1.0e+12) < TOL_ && fabs(r_Uranus(3,1) - -1.118108651902601*1.0e+12) < TOL_);
-    _assert(fabs(r_Neptune(1,1) - 1.871250770052329*1.0e+12) < TOL_ && fabs(r_Neptune(2,1) - -3.928976313605399*1.0e+12) < TOL_ && fabs(r_Neptune(3,1) - -1.655020476718540*1.0e+12) < TOL_);
-    _assert(fabs(r_Pluto(1,1) - -2.171414794259537*1.0e+12) < TOL_ && fabs(r_Pluto(2,1) - -3.915433128334976*1.0e+12) < TOL_ && fabs(r_Pluto(3,1) - -0.552716250355845*1.0e+12) < TOL_);
-    _assert(fabs(r_Moon(1,1) - 0.893833723127192*1.0e+08) < TOL_ && fabs(r_Moon(2,1) - -3.366038321179463*1.0e+08) < TOL_ && fabs(r_Moon(3,1) - -1.146487877519952*1.0e+08) < TOL_);
-    _assert(fabs(r_Sun(1,1) - 0.922982517284766*1.0e+11) < TOL_ && fabs(r_Sun(2,1) - -1.053751960790543*1.0e+11) < TOL_ && fabs(r_Sun(3,1) - -0.456863672263533*1.0e+11) < TOL_);
+    _assert(K.isEqual(comp1, TOL_));
+    _assert(x.isEqual(comp2, TOL_));
+    _assert(P.isEqual(comp3, TOL_));
 
     return 0;
 }
@@ -584,6 +661,9 @@ int all_tests()
     _verify(G_AccelHarmonic_01);
     _verify(VarEqn_01);
     _verify(JPL_Eph_DE430_01);
+    _verify(Accel_01);
+    _verify(LTC_01);
+    _verify(MeasUpdate_01);
 
     return 0;
 }
@@ -591,7 +671,6 @@ int all_tests()
 
 int main()
 {
-
     extern double Mjd0;
     Mjd0 = Mjday(1995,1,29,02,38,0);
 

@@ -23,6 +23,6 @@
 
 --------------------------------------------------------------------------*/
 
-Matrix Accel(double x, double Y);
+Matrix Accel(double x, Matrix& Y);
 
 #endif
