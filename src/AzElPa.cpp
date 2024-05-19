@@ -20,7 +20,13 @@ void  AzElPa(const Matrix& s, double& Az, double& El, Matrix& dAds, Matrix& dEds
     dAds(1, 2) = -s(1, 1)/(rho*rho);
     dAds(1, 3) = 0.0;
 
-    dEds(1, 1) = -s(1, 1)*s(1, 3)/rho/s.dot(s);
-    dEds(1, 2) = -s(1, 2)*s(1, 3)/rho/s.dot(s);
-    dEds(1, 3) = rho/s.dot(s);
+    double aux = 0.0;
+
+    for (int j = 1; j <= s.columns(); j++) {
+        aux += s(1, j) * s(1, j);
+    }
+
+    dEds(1, 1) = -s(1, 1)*s(1, 3)/rho/aux;
+    dEds(1, 2) = -s(1, 2)*s(1, 3)/rho/aux;
+    dEds(1, 3) = rho/aux;
 }

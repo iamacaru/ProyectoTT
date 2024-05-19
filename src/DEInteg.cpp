@@ -72,15 +72,15 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
     // weight vector for subroutine STEP.
 
     double del = tout - t;
-    double absdel = abs(del);
+    double absdel = fabs(del);
 
     double tend = t + 100.0 * del;
     if (!PermitTOUT) {
         tend = tout;
     }
 
-    double nostep = 0.0;
-    double kle4 = 0.0;
+    int nostep = 0;
+    int kle4 = 0;
     bool stiff = false;
     double releps = relerr/epsilon;
     double abseps = abserr/epsilon;
@@ -96,12 +96,13 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         x = t;
         yy = y;
         delsgn = sign_(1.0, del);
-        h = sign_( fmax(fouru * abs(x), abs(tout - x)), tout - x );
+        h = sign_(fmax(fouru * fabs(x), fabs(tout - x)), tout - x);
     }
 
     Matrix yout(1, 1), ypout(1, 1);
-    int k, kp1, kp2, km1, km2, ns, nsp1, knew, realns, im1, reali, nsm2, i, limit1, limit2, ip1;
-    double hi, ki, kold, erkm1, tau, xold, erkm2, erk, temp1, temp2, temp3, temp4, temp5, temp6, err, sum, absh, hold, hnew, term, psijm1, gamma, eta;
+    int k, kp1, kp2, km1, km2, ns, nsp1, knew, realns, im1, reali, nsm2, i, limit1, limit2, ip1, ki;
+    double hi, kold, erkm1, tau, xold, erkm2, erk, temp1, temp2, temp3, temp4, temp5, temp6, err, sum, absh, hold, hnew, term, psijm1, gamma, eta, r;
+    bool crash, phase1, nornd;
     while (true) {   // Start step loop
 
         // If already past output point, interpolate solution and return
@@ -115,18 +116,18 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             ki = kold + 1;
 
             // Initialize w[*] for computing g[*]
-            temp1 = 0.0;
             for (i = 1; i <= ki; i++) {
                 temp1 = i;
                 w(i + 1, 1) = 1.0 / temp1;
             }
-            // Compute g[*]
 
+            // Compute g[*]
+            term = 0.0;
             for (int j = 2; j <= ki; j++) {
                 psijm1 = psi_(j, 1);
                 gamma = (hi + term) / psijm1;
                 eta = hi / psijm1;
-                for (i = 1; i <= ki+1-j; i++) {
+                for (i = 1; i <= ki + 1 - j; i++) {
                     w(i + 1, 1) = gamma * w(i + 1, 1) - eta * w(i + 2, 1);
                 }
                 g(j + 1, 1) = w(2, 1);
@@ -138,7 +139,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             // the derivative of the solution ypout
             Matrix aux1(phi.rows(), 1);
             for (int j = 1; j <= ki; j++) {
-                i = (int)ki + 1 - j;
+                i = ki + 1 - j;
                 for (int u = 1; u <= phi.rows(); u++) {
                     aux1(u, 1) = phi(u, i + 1);
                 }
@@ -181,7 +182,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         //   end
 
         // Limit step size, set weight vector and take a step
-        h = sign_(fmin(abs(h), abs(tend-x)), h);
+        h = sign_(fmin(fabs(h), fabs(tend-x)), h);
         for (int l = 1; l <= n_eqn; l++) {
             wt(l, 1) = releps * fabs(yy(l, 1)) + abseps;
         }
@@ -195,7 +196,6 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         // starting step size. If step size is too small, determine an
         // acceptable one.
 
-        bool crash = false;
         if (fabs(h) < fouru * fabs(x)) {
             h = sign_(fouru * fabs(x), h);
             crash = true;
@@ -224,8 +224,6 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             return y;
         }
 
-
-        bool phase1 = false, nornd = false;
         if (start) {
             // Initialize. Compute appropriate step size for first step.
             yp = func(x, y);
@@ -240,7 +238,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             if (epsilon < 16.0 * sum * h * h) {
                 absh=0.25*sqrt(epsilon/sum);
             }
-            h = sign_(fmax(absh, fouru*abs(x)), h);
+            h = sign_(fmax(absh, fouru*fabs(x)), h);
             hold = 0.0;
             hnew = 0.0;
             k = 1;
@@ -397,7 +395,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
                 }
             }
             if (nornd) {
-                p = y + h*p;
+                p = y + h * p;
             } else {
                 for (int l = 1; l <= n_eqn; l++) {
                     tau = h * p(l, 1) - phi(l, 16);
@@ -476,6 +474,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
                 //
 
                 // Restore x, phi[*,*] and psi[*]
+                phase1 = false;
                 x = xold;
                 for (i = 1; i <= k; i++) {
                     temp1 = 1.0 / beta(i + 1, 1);
@@ -609,14 +608,13 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         } // end if !phase1
 
         // With new order determine appropriate step size for next step
-        double r;
         if (phase1 || (p5eps >= erk * two[k + 1])) {
             hnew = 2.0 * h;
         } else {
             if (p5eps < erk) {
-                temp2 = k+1;
+                temp2 = k + 1;
                 r = p5eps / pow(erk, 1.0 / temp2);
-                hnew = absh * fmax(0.5, fmin(0.9,r));
+                hnew = absh * fmax(0.5, fmin(0.9, r));
                 hnew = sign_(fmax(hnew, fouru * fabs(x)), h);
             } else {
                 hnew = h;
@@ -641,7 +639,6 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         }
 
         nostep = nostep + 1;  // Count total number of steps
-        cout << nostep << " ";
 
 
         // Count number of consecutive steps taken with the order of

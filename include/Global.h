@@ -17,9 +17,6 @@ public:
     static Matrix *PC;
     static void Pc ();
 
-    static Matrix *GEO;
-    static void GEOS3 ();
-
     double Mjd0;
 
     struct AuxParam {

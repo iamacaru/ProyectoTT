@@ -640,6 +640,49 @@ int DEInteg_01() {
                         5394.06842166353, -2365.21337882342, -7061.84554200298};
     Matrix comp(6, 1, values2, 6);
 
+
+    _assert(sol.isEqual(comp, 10e-9));
+
+    return 0;
+}
+
+int DEInteg_02() {
+    Global::AuxParam::Mjd_UTC = 4.974611128472211e+04;
+    Global::AuxParam::n = 20;
+    Global::AuxParam::m = 20;
+    Global::AuxParam::sun = 1;
+    Global::AuxParam::moon = 1;
+    Global::AuxParam::planets = 1;
+
+    double t = 0;
+    double tout = 37.000000476837160;
+    double relerr = 1.000000000000000e-13;
+    double abserr = 1.000000000000000e-06;
+    int n_eqn = 42;
+    double values1[] = {5.542555937228605e+06, 3.213514867349197e+06, 3.990892975876857e+06,
+                        5.394068421663527e+03, -2.365213378823424e+03, -7.061845542002980e+03,
+                        1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+                        0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+                        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+                        0, 0, 1};
+    Matrix y(42, 1, values1, 42);
+    Matrix sol = DEInteg(VarEqn, t, tout, relerr, abserr, n_eqn, y);
+
+    double values2[] = {5813231.18327038, 2640408.26883844, 3353999.63010135, 5105.44919435909,
+                        -2671.7955376211, -7350.0146717699, 1.00007017392874, 6.75969446714122e-05,
+                        8.70340673209645e-05, 1.17911025572134e-05, 1.1268927282702e-05,1.44757413383771e-05,
+                        6.75969678504529e-05, 0.999954759101711, 4.01374142601084e-05, 1.12689370127765e-05,
+                        -7.56166762202955e-06, 6.65069561262595e-06, 8.70341159513323e-05, 4.01374229409739e-05,
+                        0.999975072821143, 1.44757615728923e-05, 6.6506991709855e-06, -4.22748387386382e-06,
+                        12.0002983517632, 0.000270454728396677, 0.0003474206509939, 1.00007131377741,
+                        6.76286642788574e-05, 8.66729112882587e-05, 0.000270454773224061, 11.9998338897058,
+                        0.00015961515773347, 6.76286874984788e-05, 0.99995449802987, 3.96700317693928e-05,
+                        0.000347420746215396, 0.000159615175062237, 11.9999139065741, 8.66729597564085e-05,
+                        3.96700403350566e-05, 0.999974194048059};
+    Matrix comp(42, 1, values2, 42);
+
+    (sol-comp).print();
+
     _assert(sol.isEqual(comp, 10e-9));
 
     return 0;
@@ -648,42 +691,43 @@ int DEInteg_01() {
 
 int all_tests()
 {
-    //_verify(proMat_01);
-    //_verify(R_x_01);
-    //_verify(R_y_01);
-    //_verify(R_z_01);
-    //_verify(sign_01);
-    //_verify(timediff_01);
-    //_verify(unit_01);
-    //_verify(AccelPointMass_01);
-    //_verify(AzElPa_01);
-    //_verify(Cheb3D_01);
-    //_verify(EccAnom_01);
-    //_verify(Frac_01);
-    //_verify(Geodetic_01);
-    //_verify(MeanObliquity_01);
-    //_verify(Mjday_01);
-    //_verify(Mjday_TDB_01);
-    //_verify(NutAngles_01);
-    //_verify(Position_01);
-    //_verify(IERS_01);
-    //_verify(Legendre_01);
-    //_verify(EqnEquinox_01);
-    //_verify(Gmst_01);
-    //_verify(Gast_01);
-    //_verify(GHAMatrix_01);
-    //_verify(NutMatrix_01);
-    //_verify(PoleMatrix_01);
-    //_verify(PrecMatrix_01);
-    //_verify(TimeUpdate_01);
-    //_verify(AccelHarmonic_01);
-    //_verify(G_AccelHarmonic_01);
-    //_verify(VarEqn_01);
-    //_verify(JPL_Eph_DE430_01);
-    //_verify(Accel_01);
-    //_verify(LTC_01);
-    //_verify(MeasUpdate_01);
+    _verify(proMat_01);
+    _verify(R_x_01);
+    _verify(R_y_01);
+    _verify(R_z_01);
+    _verify(sign_01);
+    _verify(timediff_01);
+    _verify(unit_01);
+    _verify(AccelPointMass_01);
+    _verify(AzElPa_01);
+    _verify(Cheb3D_01);
+    _verify(EccAnom_01);
+    _verify(Frac_01);
+    _verify(Geodetic_01);
+    _verify(MeanObliquity_01);
+    _verify(Mjday_01);
+    _verify(Mjday_TDB_01);
+    _verify(NutAngles_01);
+    _verify(Position_01);
+    _verify(IERS_01);
+    _verify(Legendre_01);
+    _verify(EqnEquinox_01);
+    _verify(Gmst_01);
+    _verify(Gast_01);
+    _verify(GHAMatrix_01);
+    _verify(NutMatrix_01);
+    _verify(PoleMatrix_01);
+    _verify(PrecMatrix_01);
+    _verify(TimeUpdate_01);
+    _verify(AccelHarmonic_01);
+    _verify(G_AccelHarmonic_01);
+    _verify(VarEqn_01);
+    _verify(JPL_Eph_DE430_01);
+    _verify(Accel_01);
+    _verify(LTC_01);
+    _verify(MeasUpdate_01);
     _verify(DEInteg_01);
+    //_verify(DEInteg_02);
 
     return 0;
 }
@@ -707,4 +751,3 @@ int main()
 
     return result != 0;
 }
-

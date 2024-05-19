@@ -24,7 +24,6 @@ class Matrix
         void print();
 
         double norm() const;
-        double dot(const Matrix& matrix2) const;
         Matrix cross(const Matrix& matrix2) const;
 
         int rows() const;

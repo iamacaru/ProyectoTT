@@ -85,8 +85,8 @@ Matrix VarEqn(double x, Matrix& yPhi) {
 
     // Derivative of combined state vector and state transition matrix
     for (int i = 1; i <= 3; i++) {
-        yPhip(i, 1)   = v(i, 1);                 // dr/dt(i)
-        yPhip(i+3, 1) = a(i, 1);               // dv/dt(i)
+        yPhip(i, 1) = v(i, 1);                 // dr/dt(i)
+        yPhip(i + 3, 1) = a(i, 1);               // dv/dt(i)
     }
 
     for (int i = 1; i <= 6; i++) {

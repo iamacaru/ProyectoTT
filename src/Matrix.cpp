@@ -176,24 +176,6 @@ double Matrix::norm() const{
     return sqrt(sum);
 }
 
-double Matrix::dot(const Matrix& matrix2) const {
-    if (fil != 1 || matrix2.rows() != 1) {
-        throw std::invalid_argument("Both matrices must have one row.");
-    }
-
-    if (col != matrix2.columns()) {
-        throw std::invalid_argument("Matrices must have the same number of columns.");
-    }
-
-    double result = 0.0;
-
-    for (int j = 0; j < col; j++) {
-        result += matrix[0][j] * matrix2.matrix[0][j];
-    }
-
-    return result;
-}
-
 Matrix Matrix::cross(const Matrix& matrix2) const {
     double x = matrix[0][1] * matrix2(1,3) - matrix[0][2] * matrix2(1,2);
     double y = matrix[0][2] * matrix2(1,1) - matrix[0][0] * matrix2(1,3);
