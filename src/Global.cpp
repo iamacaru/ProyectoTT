@@ -12,7 +12,14 @@ double Mjd0;
 void Global::eop19620101(int f) {
     Global::eopdata = new Matrix(f, 13);
 
-    FILE *fid = fopen("../data/eop19620101.txt","r");
+    #ifdef _WIN32
+        // CLion en Windows
+        FILE *fid = fopen("../data/eop19620101.txt","r");
+    #else
+        // bash en Linux
+        FILE *fid = fopen("./data/eop19620101.txt","r");
+    #endif
+
     if (fid == nullptr) {
         printf("Error al abrir el fichero.");
         exit(EXIT_FAILURE);
@@ -37,9 +44,15 @@ void Global::GGM03S () {
 
     Matrix *aux = new Matrix(6, 1);
 
+    #ifdef _WIN32
+        // CLion en Windows
+        FILE *fid = fopen("../data/GGM03S.txt","r");
+    #else
+        // bash en Linux
+        FILE *fid = fopen("./data/GGM03S.txt","r");
+    #endif
 
-    FILE *fid = fopen("../data/GGM03S.txt","r");
-    if (fid == NULL) {
+    if (fid == nullptr) {
         printf("Error al abrir el fichero.");
         exit(EXIT_FAILURE);
     }
@@ -60,8 +73,16 @@ void Global::GGM03S () {
 void Global::Pc () {
     Global::PC = new Matrix(2285, 1020);
 
-    FILE *fid = fopen("../data/DE430Coeff.txt","r");
-    if (fid == NULL) {
+    #ifdef _WIN32
+        // CLion en Windows
+        FILE *fid = fopen("../data/DE430Coeff.txt","r");
+    #else
+        // bash en Linux
+        FILE *fid = fopen("./data/DE430Coeff.txt","r");
+    #endif
+
+
+    if (fid == nullptr) {
         printf("Error al abrir el fichero.");
         exit(EXIT_FAILURE);
     }

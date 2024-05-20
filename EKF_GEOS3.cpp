@@ -45,10 +45,16 @@ int main() {
     int nobs = 46;
     Matrix obs(nobs, 4);
 
-    ifstream file("../data/GEOS3.txt");
+    #ifdef _WIN32
+        // CLion en Windows
+        ifstream file("../data/GEOS3.txt");
+    #else
+        // Linux en bash
+        ifstream file("./data/GEOS3.txt");
+    #endif
 
     if (!file.is_open()) {
-        std::cerr << "Error al abrir el archivo" << std::endl;
+        std::cerr << "Error al abrir el fichero." << std::endl;
         return 1;
     }
 
