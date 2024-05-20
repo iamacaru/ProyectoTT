@@ -39,6 +39,8 @@ using namespace std;
 --------------------------------------------------------------------------*//*
 
 
+
+
 int main() {
     Global::Pc();
     Global::GGM03S();
@@ -143,7 +145,9 @@ int main() {
     dDds(1, 1), dDdY(1, 1), timediff1(1, 1);
 
     char interp = 'l';
-    double x_pole, y_pole, UT1_UTC, LOD, dpsi, deps, dx_pole, dy_pole, TAI_UTC, UT1_TAI, UTC_GPS, UT1_GPS, TT_UTC, GPS_UTC, Mjd_TT, Mjd_UT1, theta, Azim, Elev;
+    double x_pole = 0.0, y_pole = 0.0, UT1_UTC = 0.0, LOD = 0.0, dpsi = 0.0, deps = 0.0, dx_pole = 0.0, dy_pole = 0.0,
+    TAI_UTC = 0.0, UT1_TAI = 0.0, UTC_GPS = 0.0, UT1_GPS = 0.0, TT_UTC = 0.0, GPS_UTC = 0.0, Mjd_TT = 0.0, Mjd_UT1 = 0.0,
+    theta = 0.0, Azim = 0.0, Elev = 0.0;
 
     for (int i = 1; i <= nobs; i++) {
         // Previous step
@@ -192,6 +196,7 @@ int main() {
 
         // Time update
         P = TimeUpdate(P, Phi);
+
 
         // Azimuth and partials
         AzElPa(S.traspuesta(), Azim, Elev, dAds, dEds);    // Azimuth, Elevation
@@ -257,4 +262,5 @@ int main() {
     cout << "dVz" << setw(8) << Y0(6, 1) - Y_true(6, 1) << " [m/s]" << endl;
 
     return 0;
-};*/
+};
+*/

@@ -308,7 +308,6 @@ void JPL_Eph_DE430(Matrix& r_Mercury, Matrix& r_Venus, Matrix& r_Earth, Matrix& 
     aux1 = Cx_Nutations.subMatrix(10 * j + 1, 10 * j + 10, 1);
     aux2 = Cy_Nutations.subMatrix(10 * j + 1, 10 * j + 10, 1);
     aux3 = Matrix(10,1);
-    Matrix Nutations = Cheb3D(Mjd_TDB, 10, Mjd0, Mjd0+8, aux1, aux2, aux3).traspuesta();
 
     i = 1;
     for (int k = 899; k <= 929; k += 10) {

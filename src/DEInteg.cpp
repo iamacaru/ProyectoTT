@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <limits>
-#include <iostream>
 
 using namespace std;
 
@@ -49,7 +48,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
 
     // Return, if output time equals input time
 
-    if (t==tout) {                  // No integration
+    if (t == tout) {                  // No integration
         return y;
     }
 
@@ -82,8 +81,8 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
     int nostep = 0;
     int kle4 = 0;
     bool stiff = false;
-    double releps = relerr/epsilon;
-    double abseps = abserr/epsilon;
+    double releps = relerr / epsilon;
+    double abseps = abserr / epsilon;
 
     bool OldPermit = true;
     double delsgn = 1.0;
@@ -100,9 +99,12 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
     }
 
     Matrix yout(1, 1), ypout(1, 1);
-    int k, kp1, kp2, km1, km2, ns, nsp1, knew, realns, im1, reali, nsm2, i, limit1, limit2, ip1, ki;
-    double hi, kold, erkm1, tau, xold, erkm2, erk, temp1, temp2, temp3, temp4, temp5, temp6, err, sum, absh, hold, hnew, term, psijm1, gamma, eta, r;
-    bool crash, phase1, nornd;
+    int k = 0, kp1 = 0, kp2 = 0, km1 = 0, km2 = 0, ns = 0, nsp1 = 0, knew = 0, realns = 0, im1 = 0, reali = 0, nsm2 = 0,
+    i = 0, limit1 = 0, limit2 = 0, ip1 = 0, ki = 0, kold = 0, nsp2 = 0;
+    double hi = 0.0, erkm1 = 0.0, tau = 0.0, xold = 0.0, erkm2 = 0.0, erk = 0.0, temp1 = 0.0, temp2 = 0.0,
+    temp3 = 0.0, temp4 = 0.0, temp5 = 0.0, temp6 = 0.0, err = 0.0, sum = 0.0, absh = 0.0, hold = 0.0, hnew = 0.0,
+    term = 0.0, psijm1 = 0.0, gamma = 0.0, eta = 0.0, r = 0.0, p5eps = 0.0, ifail = 0.0, round = 0.0, erkp1 = 0.0;
+    bool crash = false, phase1 = false, nornd = false, success = false;
     while (true) {   // Start step loop
 
         // If already past output point, interpolate solution and return
@@ -202,18 +204,18 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             return y;           // Exit
         }
 
-        double p5eps  = 0.5 * epsilon;
+        p5eps  = 0.5 * epsilon;
         crash = false;
         g(2, 1) = 1.0;
         g(3, 1) = 0.5;
         sig(2, 1) = 1.0;
 
-        double ifail = 0.0;
+        ifail = 0.0;
 
         // If error tolerance is too small, increase it to an
         // acceptable value.
 
-        double round = 0.0;
+        round = 0.0;
         for (int l = 1; l <= n_eqn; l++) {
             round = round + (y(l, 1) * y(l, 1))/(wt(l, 1) * wt(l, 1));
         }
@@ -342,7 +344,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
                 }
 
                 // Compute the g[*] in the work vector w[*]
-                int nsp2 = ns + 2;
+                nsp2 = ns + 2;
                 if (kp1 >= nsp2) {
                     for (i = nsp2; i <= kp1; i++) {
                         limit2 = kp2 - i;
@@ -441,7 +443,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             // Test if order should be lowered
             if (km2 >0) {
                 if (fmax(erkm1, erkm2) <= erk) {
-                    knew=km1;
+                    knew = km1;
                 }
             }
             if (km2 == 0) {
@@ -459,7 +461,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
             // blocks 1 and 2 after executing block 3
             //
 
-            bool success = (err <= epsilon);
+            success = (err <= epsilon);
 
             if (!success) {
                 //
@@ -563,7 +565,7 @@ Matrix DEInteg(Matrix (*func)(double, Matrix&), double t, double tout, double re
         // - in first phase when always raise order,
         // - already decided to lower order,
         // - step size not constant so estimate unreliable
-        double erkp1 = 0.0;
+        erkp1 = 0.0;
         if ((knew == km1) || (k == 12)) {
             phase1 = false;
         }
