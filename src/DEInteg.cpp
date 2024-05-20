@@ -1,5 +1,5 @@
-#include "DEInteg.h"
-#include "Sign_.h"
+#include "../include/DEInteg.h"
+#include "../include/Sign_.h"
 
 #include <cmath>
 #include <limits>

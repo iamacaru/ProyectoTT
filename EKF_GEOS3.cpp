@@ -1,5 +1,3 @@
-/*
-#include <fstream>
 #include "./include/Matrix.h"
 #include "./include/R_z.h"
 #include "./include/Global.h"
@@ -17,12 +15,12 @@
 #include "./include/DEInteg.h"
 #include "./include/VarEqn.h"
 
+#include <fstream>
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-*/
 /*--------------------------------------------------------------------------
 
   Initial Orbit Determination using Gauss and Extended Kalman Filter methods
@@ -36,10 +34,7 @@ using namespace std;
 
    G. Seeber, "Satellite Geodesy", 2nd Edition, 2003.
 
---------------------------------------------------------------------------*//*
-
-
-
+--------------------------------------------------------------------------*/
 
 int main() {
     Global::Pc();
@@ -263,4 +258,3 @@ int main() {
 
     return 0;
 };
-*/
