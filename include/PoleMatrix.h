@@ -19,6 +19,15 @@
 
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file PoleMatrix.h
+ * @brief Transformation from pseudo Earth-fixed to Earth-fixed coordinates for a given date
+ *
+ * @param xp Pole coordinte xp
+ * @param yp Pole coordinte yp
+ * @return Pole matrix
+ */
+
 Matrix PoleMatrix(double xp, double yp);
 
 #endif

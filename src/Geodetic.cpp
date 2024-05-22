@@ -13,7 +13,7 @@ Matrix Geodetic(const Matrix& r) {
     const double f = Constants::f_Earth;
 
     const double epsRequ = numeric_limits<double>::epsilon() * R_equ;   // Convergence criterion
-    const double e2 = f * (2.0 - f);                                    // Cuadrado de la excentricidad
+    const double e2 = f * (2.0 - f);                                    // Square of the eccentricity
 
     double X = r(1, 1);                                            // Cartesian coordinates
     double Y = r(1, 2);

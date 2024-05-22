@@ -19,6 +19,15 @@
  Last modified:   2020/03/16   Meysam Mahooti
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file VarEqn.h
+ * @brief Computes the variation equation for orbit determination
+ *
+ * @param x The time
+ * @param yPhi The state vector
+ * @return The variation equation
+ */
+
 Matrix VarEqn(double x, Matrix& yPhi);
 
 #endif

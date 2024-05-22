@@ -18,6 +18,16 @@
 
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file AccelPointMass.h
+ * @brief Computes the perturbational acceleration due to a point mass
+ *
+ * @param r Satellite position vector
+ * @param s Point mass position vector
+ * @param GM Gravitational coefficient of point mass
+ * @return Acceleration (a=d^2r/dt^2)
+ */
+
 Matrix AccelPointMass(Matrix& r, Matrix& s, double GM);
 
 #endif

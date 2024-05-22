@@ -17,6 +17,14 @@
 
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file Unit.h
+ * @brief This function calculates a unit vector given the original vector. If a zero vector is input, the vector is set to zero
+ *
+ * @param vec vector
+ * @return unit vector
+ */
+
 Matrix unit(const Matrix& vec);
 
 #endif

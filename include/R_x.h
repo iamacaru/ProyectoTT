@@ -11,6 +11,14 @@
     rotmat      - vector result
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file R_x.h
+ * @brief Computes the rotation matrix for a rotation about the x-axis
+ *
+ * @param alpha angle of rotation [rad]
+ * @return vector result
+ */
+
 Matrix R_x(double alpha);
 
 #endif

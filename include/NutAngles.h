@@ -18,6 +18,14 @@
 
 --------------------------------------------------------------------------*/
 
+/*!
+ * @file NutAngles.h
+ * @brief Computes the nutation in longitude and obliquity
+ *
+ * @param Mjd_TT Modified Julian Date (Terrestrial Time)
+ * @return A Matrix object containing the nutation in longitude and obliquity in radians
+ */
+
 Matrix NutAngles(double Mjd_TT);
 
 #endif
