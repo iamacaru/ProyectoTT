@@ -47,6 +47,16 @@ int tests_run = 0;
 
 using namespace std;
 
+/*!
+ * @file EKF_Test.cpp
+ *
+ * @brief Archivo principal para ejecutar pruebas unitarias de las funciones desarrolladas.
+ *
+ * Este archivo contiene la implementación de varias pruebas unitarias para las funciones que hemos creado, estas van
+ * desde cálculos de matrices de rotación y funciones trigonométricas hasta diferencias de tiempo y computaciones de
+ * posiciones ecuatoriales. Las pruebas aseguran que las funciones devuelvan resultados correctos y consistentes.
+ */
+
 int proMat_01()
 {
     double v1[] = {1.0, 2.0, 3.0, 4.0};
